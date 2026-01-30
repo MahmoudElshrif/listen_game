@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="GameInfo" load_steps=3 format=3 uid="uid://b57uaj8o8jsud"]
+
+[ext_resource type="PackedScene" uid="uid://m3orbid4yh4f" path="res://games/files/simple_color.tscn" id="1_nneet"]
+[ext_resource type="Script" uid="uid://b5xbpg2fwtfsj" path="res://games/resources/game_info.gd" id="2_tverj"]
+
+[resource]
+script = ExtResource("2_tverj")
+game = ExtResource("1_nneet")
+metadata/_custom_type_script = "uid://b5xbpg2fwtfsj"

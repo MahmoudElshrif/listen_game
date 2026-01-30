@@ -3,6 +3,7 @@ extends Node2D
 var fullsize : float
 var cursize : float
 
+
 func _ready() -> void:
 	fullsize = $bar.size.x
 

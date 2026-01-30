@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="GameInfo" load_steps=3 format=3 uid="uid://breynbdkf7v16"]
+
+[ext_resource type="Script" uid="uid://b5xbpg2fwtfsj" path="res://games/resources/game_info.gd" id="1_egkar"]
+[ext_resource type="PackedScene" uid="uid://dnacm3mb5ipk" path="res://games/files/dont_press.tscn" id="1_pvknm"]
+
+[resource]
+script = ExtResource("1_egkar")
+game = ExtResource("1_pvknm")
+timerscale = 0.8
+metadata/_custom_type_script = "uid://b5xbpg2fwtfsj"

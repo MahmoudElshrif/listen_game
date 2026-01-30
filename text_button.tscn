@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://cxne2odanu1mf"]
+
+[sub_resource type="GDScript" id="GDScript_1kcdr"]
+script/source = "extends Label
+
+signal pressed(id : int)
+
+var id : int = -1
+
+func _input(event: InputEvent) -> void:
+	var rect := get_global_rect()
+	if(event.is_action_released(\"mouse\") and rect.has_point(get_global_mouse_position())):
+		pressed.emit(id)
+"
+
+[node name="TextButton" type="Label"]
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+text = "TextHere"
+script = SubResource("GDScript_1kcdr")

@@ -1,14 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://dgi7x1eshpt85"]
+[gd_scene load_steps=8 format=3 uid="uid://dgi7x1eshpt85"]
 
+[ext_resource type="Script" uid="uid://b5xbpg2fwtfsj" path="res://games/resources/game_info.gd" id="1_75scw"]
 [ext_resource type="PackedScene" uid="uid://cam8uvm1j1xtt" path="res://timer.tscn" id="1_fnvm8"]
+[ext_resource type="Resource" uid="uid://b57uaj8o8jsud" path="res://games/resources/SimpleColor.tres" id="2_5w8cb"]
+[ext_resource type="Resource" uid="uid://b3cyicqpggtj0" path="res://games/resources/TextColor.tres" id="2_75scw"]
+[ext_resource type="Resource" uid="uid://breynbdkf7v16" path="res://games/resources/DontPress.tres" id="4_05t8k"]
+[ext_resource type="Texture2D" uid="uid://ll7h5qry2vyx" path="res://assets/sprites/bg.png" id="6_colo3"]
 
 [sub_resource type="GDScript" id="GDScript_s16xd"]
 script/source = "extends Node2D
 
-const MINIGAME = preload(\"res://simple_color.tscn\")
+
+@export var games : Array[GameInfo]
 
 var score : int
 var curgame : MiniGame
+var time :float= 3
 
 func _on_mini_game_correct() -> void:
 	print(\"correct\")
@@ -19,14 +26,21 @@ func _on_mini_game_correct() -> void:
 
 func _on_mini_game_wrong() -> void:
 	print(\"lose\")
-	score = 0
+	get_tree().change_scene_to_file(\"res://lose_screen.tscn\")
 	$Label.text = str(score)
 
 func load_next():
+	var game = games.pick_random()
+	load_level(game)
+
+
+func load_level(game : GameInfo):
 	if(curgame):
 		curgame.queue_free()
-	curgame = MINIGAME.instantiate()
+	curgame = game.game.instantiate()
 	add_child(curgame)
+	time = 3 - (0.5 * int(score / 5))
+	$Timer.start(time * game.timerscale)
 	curgame.correct.connect(_on_mini_game_correct)
 	curgame.wrong.connect(_on_mini_game_wrong)
 
@@ -35,7 +49,8 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	$TimerBar.set_timer($Timer.time_left / $Timer.wait_time)
-
+	$Bg.region_rect.position.x += 1
+	$Bg.region_rect.position.y += 1
 
 func _on_timer_timeout() -> void:
 	curgame.timeout()
@@ -43,6 +58,13 @@ func _on_timer_timeout() -> void:
 
 [node name="GameManger" type="Node2D"]
 script = SubResource("GDScript_s16xd")
+games = Array[ExtResource("1_75scw")]([ExtResource("2_5w8cb"), ExtResource("2_75scw"), ExtResource("4_05t8k")])
+
+[node name="Bg" type="Sprite2D" parent="."]
+texture = ExtResource("6_colo3")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 1270, 720)
 
 [node name="Label" type="Label" parent="."]
 offset_left = 92.0

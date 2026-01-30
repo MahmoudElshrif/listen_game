@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://bia12tu1l1ot0"]
+
+[ext_resource type="Script" uid="uid://bruvdqtm6gijt" path="res://games/files/color_text.gd" id="1_5xcsw"]
+[ext_resource type="PackedScene" uid="uid://cxne2odanu1mf" path="res://text_button.tscn" id="2_ybibq"]
+
+[node name="ColorText" type="Node2D" node_paths=PackedStringArray("elements")]
+script = ExtResource("1_5xcsw")
+elements = NodePath("elements")
+
+[node name="elements" type="Node2D" parent="."]
+
+[node name="red" parent="elements" instance=ExtResource("2_ybibq")]
+offset_left = 459.0
+offset_top = 257.0
+offset_right = 742.0
+offset_bottom = 345.0
+theme_override_font_sizes/font_size = 64
+
+[node name="green" parent="elements" instance=ExtResource("2_ybibq")]
+offset_left = 769.0
+offset_top = 440.0
+offset_right = 1052.0
+offset_bottom = 528.0
+theme_override_font_sizes/font_size = 64
+
+[node name="blue" parent="elements" instance=ExtResource("2_ybibq")]
+offset_left = 211.0
+offset_top = 436.0
+offset_right = 494.0
+offset_bottom = 524.0
+theme_override_font_sizes/font_size = 64

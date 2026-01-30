@@ -9,6 +9,9 @@ signal wrong
 func _pressed(id : int):
 	pass
 
+func timeout():
+	wrong.emit()
+
 func _ready() -> void:
 	for i in range(elements.get_child_count()):
 		elements.get_children()[i].pressed.connect(_pressed)

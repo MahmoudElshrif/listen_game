@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://dgi7x1eshpt85"]
+[gd_scene load_steps=3 format=3 uid="uid://dgi7x1eshpt85"]
+
+[ext_resource type="PackedScene" uid="uid://cam8uvm1j1xtt" path="res://timer.tscn" id="1_fnvm8"]
 
 [sub_resource type="GDScript" id="GDScript_s16xd"]
 script/source = "extends Node2D
@@ -12,13 +14,13 @@ func _on_mini_game_correct() -> void:
 	print(\"correct\")
 	score += 1
 	$Label.text = str(score)
+	$Timer.start()
 	load_next()
 
 func _on_mini_game_wrong() -> void:
 	print(\"lose\")
 	score = 0
 	$Label.text = str(score)
-	load_next()
 
 func load_next():
 	if(curgame):
@@ -30,6 +32,13 @@ func load_next():
 
 func _ready() -> void:
 	load_next()
+
+func _physics_process(delta: float) -> void:
+	$TimerBar.set_timer($Timer.time_left / $Timer.wait_time)
+
+
+func _on_timer_timeout() -> void:
+	curgame.timeout()
 "
 
 [node name="GameManger" type="Node2D"]
@@ -42,3 +51,13 @@ offset_right = 132.0
 offset_bottom = 75.0
 scale = Vector2(2.382225, 2.382225)
 text = "0"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[node name="TimerBar" parent="." instance=ExtResource("1_fnvm8")]
+position = Vector2(635, 55)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

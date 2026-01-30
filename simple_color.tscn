@@ -10,15 +10,13 @@ elements = NodePath("elements")
 [node name="elements" type="Node2D" parent="."]
 
 [node name="Button" parent="elements" instance=ExtResource("1_0wh6f")]
-position = Vector2(205.99998, 329.99997)
+position = Vector2(438.99997, 360.00003)
 
 [node name="Button2" parent="elements" instance=ExtResource("1_0wh6f")]
-position = Vector2(440.99997, 329.99997)
+position = Vector2(635.0001, 179.99995)
 
 [node name="Button3" parent="elements" instance=ExtResource("1_0wh6f")]
-position = Vector2(688.99994, 329.99997)
+position = Vector2(831, 360.00003)
 
 [node name="Button4" parent="elements" instance=ExtResource("1_0wh6f")]
-position = Vector2(928, 329.99997)
-
-[node name="tts" type="AudioStreamPlayer" parent="."]
+position = Vector2(635, 540)

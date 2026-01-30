@@ -4,6 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://dsankxc2u63jx" path="res://assets/sprites/white.jpg" id="1_vxja4"]
 
 [node name="Button" type="Sprite2D"]
-scale = Vector2(0.6488888, 1.3155555)
+scale = Vector2(0.6666666, 0.6666667)
 texture = ExtResource("1_vxja4")
 script = ExtResource("1_n4tde")

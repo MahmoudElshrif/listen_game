@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://dnrcymgd6tkc"]
 
 [ext_resource type="Script" uid="uid://5bpqtomddmqo" path="res://button.gd" id="1_n4tde"]
-[ext_resource type="Texture2D" uid="uid://bfoyneu0svgjd" path="res://icon.svg" id="1_r04n3"]
+[ext_resource type="Texture2D" uid="uid://dsankxc2u63jx" path="res://assets/sprites/white.jpg" id="1_vxja4"]
 
 [node name="Button" type="Sprite2D"]
-scale = Vector2(1.328125, 2.5625)
-texture = ExtResource("1_r04n3")
+scale = Vector2(0.6488888, 1.3155555)
+texture = ExtResource("1_vxja4")
 script = ExtResource("1_n4tde")

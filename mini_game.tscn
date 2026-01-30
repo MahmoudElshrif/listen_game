@@ -1,44 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://cn1qs8023ub8t"]
+[gd_scene load_steps=2 format=3 uid="uid://cn1qs8023ub8t"]
 
-[ext_resource type="PackedScene" uid="uid://dnrcymgd6tkc" path="res://button.tscn" id="1_snhvf"]
+[ext_resource type="Script" uid="uid://e8iyntkbwbge" path="res://mini_game.gd" id="1_a1pjn"]
 
-[sub_resource type="GDScript" id="GDScript_snhvf"]
-script/source = "class_name MiniGame
-extends Node2D
-
-signal correct
-signal wrong
-
-@export var answer :int = 2
-@export var elements : Node2D
-
-func _pressed(id : int):
-	print(answer, id)
-	if(answer == id):
-		correct.emit()
-	else:
-		wrong.emit()
-
-func _ready() -> void:
-	for i in range(elements.get_child_count()):
-		elements.get_children()[i].pressed.connect(_pressed)
-		elements.get_children()[i].id = i
-"
-
-[node name="MiniGame" type="Node2D" node_paths=PackedStringArray("elements")]
-script = SubResource("GDScript_snhvf")
-elements = NodePath("elemnts")
-
-[node name="elemnts" type="Node2D" parent="."]
-
-[node name="Button" parent="elemnts" instance=ExtResource("1_snhvf")]
-position = Vector2(215, 284)
-
-[node name="Button2" parent="elemnts" instance=ExtResource("1_snhvf")]
-position = Vector2(466, 289)
-
-[node name="Button3" parent="elemnts" instance=ExtResource("1_snhvf")]
-position = Vector2(700, 293)
-
-[node name="Button4" parent="elemnts" instance=ExtResource("1_snhvf")]
-position = Vector2(934, 298)
+[node name="MiniGame" type="Node2D"]
+script = ExtResource("1_a1pjn")

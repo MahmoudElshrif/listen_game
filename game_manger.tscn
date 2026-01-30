@@ -1,28 +1,39 @@
-[gd_scene load_steps=3 format=3 uid="uid://dgi7x1eshpt85"]
-
-[ext_resource type="PackedScene" uid="uid://cn1qs8023ub8t" path="res://mini_game.tscn" id="1_fnvm8"]
+[gd_scene load_steps=2 format=3 uid="uid://dgi7x1eshpt85"]
 
 [sub_resource type="GDScript" id="GDScript_s16xd"]
 script/source = "extends Node2D
 
+const MINIGAME = preload(\"res://simple_color.tscn\")
 
 var score : int
+var curgame : MiniGame
 
 func _on_mini_game_correct() -> void:
 	print(\"correct\")
 	score += 1
 	$Label.text = str(score)
+	load_next()
 
 func _on_mini_game_wrong() -> void:
 	print(\"lose\")
 	score = 0
 	$Label.text = str(score)
+	load_next()
+
+func load_next():
+	if(curgame):
+		curgame.queue_free()
+	curgame = MINIGAME.instantiate()
+	add_child(curgame)
+	curgame.correct.connect(_on_mini_game_correct)
+	curgame.wrong.connect(_on_mini_game_wrong)
+
+func _ready() -> void:
+	load_next()
 "
 
 [node name="GameManger" type="Node2D"]
 script = SubResource("GDScript_s16xd")
-
-[node name="MiniGame" parent="." instance=ExtResource("1_fnvm8")]
 
 [node name="Label" type="Label" parent="."]
 offset_left = 92.0
@@ -31,6 +42,3 @@ offset_right = 132.0
 offset_bottom = 75.0
 scale = Vector2(2.382225, 2.382225)
 text = "0"
-
-[connection signal="correct" from="MiniGame" to="." method="_on_mini_game_correct"]
-[connection signal="wrong" from="MiniGame" to="." method="_on_mini_game_wrong"]

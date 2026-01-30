@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://m3orbid4yh4f"]
+
+[ext_resource type="PackedScene" uid="uid://dnrcymgd6tkc" path="res://button.tscn" id="1_0wh6f"]
+[ext_resource type="Script" uid="uid://bixhchejr35gv" path="res://simple_color.gd" id="1_7hglm"]
+
+[node name="SimpleColor" type="Node2D" node_paths=PackedStringArray("elements")]
+script = ExtResource("1_7hglm")
+elements = NodePath("elements")
+
+[node name="elements" type="Node2D" parent="."]
+
+[node name="Button" parent="elements" instance=ExtResource("1_0wh6f")]
+position = Vector2(205.99998, 329.99997)
+
+[node name="Button2" parent="elements" instance=ExtResource("1_0wh6f")]
+position = Vector2(440.99997, 329.99997)
+
+[node name="Button3" parent="elements" instance=ExtResource("1_0wh6f")]
+position = Vector2(688.99994, 329.99997)
+
+[node name="Button4" parent="elements" instance=ExtResource("1_0wh6f")]
+position = Vector2(928, 329.99997)
+
+[node name="tts" type="AudioStreamPlayer" parent="."]

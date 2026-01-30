@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Listen_and_learn"
-run/main_scene="uid://dgi7x1eshpt85"
+run/main_scene="uid://bv8jc1bsewnqh"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 

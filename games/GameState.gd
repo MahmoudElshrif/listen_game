@@ -1,7 +1,7 @@
 class_name GameState
 extends Resource
 
-
+var gamesplayed : int = 0
 var gamestash : Array[GameInfo]
 
 

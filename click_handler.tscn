@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://pim3wmrpxuua"]
+
+[sub_resource type="GDScript" id="GDScript_b3y00"]
+script/source = "extends Node2D
+
+
+signal pressed(id : int)
+
+func press(id : int):
+	pressed.emit(id)
+"
+
+[node name="ClickHandler" type="Node2D"]
+script = SubResource("GDScript_b3y00")

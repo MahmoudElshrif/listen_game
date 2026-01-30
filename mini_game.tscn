@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://cn1qs8023ub8t"]
+
+[ext_resource type="PackedScene" uid="uid://dnrcymgd6tkc" path="res://button.tscn" id="1_snhvf"]
+
+[sub_resource type="GDScript" id="GDScript_snhvf"]
+script/source = "extends Node2D
+
+
+@export var correct :int = 2
+
+func _pressed(id : int):
+	print(\"correct\" if id == correct else \"wrong\")
+
+func _ready() -> void:
+	for i in range($elemnts.get_child_count()):
+		$elemnts.get_children()[i].pressed.connect(_pressed)
+		$elemnts.get_children()[i].id = i
+"
+
+[node name="MiniGame" type="Node2D"]
+script = SubResource("GDScript_snhvf")
+
+[node name="elemnts" type="Node2D" parent="."]
+
+[node name="Button" parent="elemnts" instance=ExtResource("1_snhvf")]
+position = Vector2(215, 284)
+
+[node name="Button2" parent="elemnts" instance=ExtResource("1_snhvf")]
+position = Vector2(466, 289)
+
+[node name="Button3" parent="elemnts" instance=ExtResource("1_snhvf")]
+position = Vector2(700, 293)
+
+[node name="Button4" parent="elemnts" instance=ExtResource("1_snhvf")]
+position = Vector2(934, 298)

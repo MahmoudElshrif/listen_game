@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://bcy1ygl5724qw"]
+
+[ext_resource type="PackedScene" uid="uid://dnrcymgd6tkc" path="res://button.tscn" id="1_wtcfe"]
+
+[sub_resource type="GDScript" id="GDScript_0e48y"]
+script/source = "extends Node2D
+
+
+func _print(id : int):
+	print(\"pressed \" + str(id))
+"
+
+[node name="Node2D" type="Node2D"]
+script = SubResource("GDScript_0e48y")
+
+[node name="Button" parent="." instance=ExtResource("1_wtcfe")]
+position = Vector2(277, 323)
+scale = Vector2(0.7500012, 1.4470612)
+
+[connection signal="pressed" from="Button" to="." method="_print"]

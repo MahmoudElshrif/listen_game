@@ -12,10 +12,10 @@ var colors := [
 ]
 
 var voices = [
-	"res://assets/tts/red.mp3",
-	"res://assets/tts/green.mp3",
-	"res://assets/tts/blue.mp3",
-	"res://assets/tts/yellow.mp3"
+	"red",
+	"green",
+	"blue",
+	"yellow"
 ]
 
 func _pressed(id : int):
@@ -26,11 +26,8 @@ func _pressed(id : int):
 
 func _ready() -> void:
 	super._ready()
-	ids.shuffle()
 	answer = randi_range(0,3)
-	var stream : AudioStreamMP3 = AudioStreamMP3.load_from_file(voices[answer])
-	$tts.stream = stream
-	$tts.play()
+	TTSPlayer.play(voices[answer])
 	for i in range(elements.get_child_count()):
 		elements.get_children()[i].modulate = colors[ids[i]]
 		

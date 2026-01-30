@@ -15,6 +15,10 @@ run/main_scene="uid://dgi7x1eshpt85"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+TTSPlayer="*res://tts_player.tscn"
+
 [input]
 
 mouse={

@@ -1,0 +1,50 @@
+[gd_scene load_steps=3 format=3 uid="uid://dscyrm53t2oig"]
+
+[ext_resource type="Script" uid="uid://bks6n5gk71q8v" path="res://games/files/tricky_text.gd" id="1_y7x7t"]
+[ext_resource type="PackedScene" uid="uid://cxne2odanu1mf" path="res://text_button.tscn" id="2_n3qqi"]
+
+[node name="TrickyText" type="Node2D" node_paths=PackedStringArray("elements")]
+script = ExtResource("1_y7x7t")
+elements = NodePath("elements")
+
+[node name="elements" type="Node2D" parent="."]
+
+[node name="TextButton" parent="elements" instance=ExtResource("2_n3qqi")]
+offset_left = 475.0
+offset_top = 281.0
+offset_right = 758.0
+offset_bottom = 369.0
+theme_override_font_sizes/font_size = 64
+horizontal_alignment = 1
+
+[node name="TextButton2" parent="elements" instance=ExtResource("2_n3qqi")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 227.0
+offset_top = 396.0
+offset_right = 510.0
+offset_bottom = 484.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 64
+horizontal_alignment = 1
+
+[node name="TextButton3" parent="elements" instance=ExtResource("2_n3qqi")]
+offset_left = 755.0
+offset_top = 402.0
+offset_right = 1038.0
+offset_bottom = 490.0
+theme_override_font_sizes/font_size = 64
+horizontal_alignment = 1
+
+[node name="TextButton4" parent="elements" instance=ExtResource("2_n3qqi")]
+offset_left = 473.0
+offset_top = 556.0
+offset_right = 756.0
+offset_bottom = 644.0
+theme_override_font_sizes/font_size = 64
+horizontal_alignment = 1

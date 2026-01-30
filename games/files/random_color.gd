@@ -1,3 +1,4 @@
+class_name RandomColor
 extends SimpleColor
 
 

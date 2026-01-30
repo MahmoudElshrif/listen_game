@@ -3,22 +3,31 @@
 [ext_resource type="PackedScene" uid="uid://dnrcymgd6tkc" path="res://button.tscn" id="1_snhvf"]
 
 [sub_resource type="GDScript" id="GDScript_snhvf"]
-script/source = "extends Node2D
+script/source = "class_name MiniGame
+extends Node2D
 
+signal correct
+signal wrong
 
-@export var correct :int = 2
+@export var answer :int = 2
+@export var elements : Node2D
 
 func _pressed(id : int):
-	print(\"correct\" if id == correct else \"wrong\")
+	print(answer, id)
+	if(answer == id):
+		correct.emit()
+	else:
+		wrong.emit()
 
 func _ready() -> void:
-	for i in range($elemnts.get_child_count()):
-		$elemnts.get_children()[i].pressed.connect(_pressed)
-		$elemnts.get_children()[i].id = i
+	for i in range(elements.get_child_count()):
+		elements.get_children()[i].pressed.connect(_pressed)
+		elements.get_children()[i].id = i
 "
 
-[node name="MiniGame" type="Node2D"]
+[node name="MiniGame" type="Node2D" node_paths=PackedStringArray("elements")]
 script = SubResource("GDScript_snhvf")
+elements = NodePath("elemnts")
 
 [node name="elemnts" type="Node2D" parent="."]
 

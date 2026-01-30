@@ -4,9 +4,33 @@
 
 [sub_resource type="GDScript" id="GDScript_s16xd"]
 script/source = "extends Node2D
+
+
+var score : int
+
+func _on_mini_game_correct() -> void:
+	print(\"correct\")
+	score += 1
+	$Label.text = str(score)
+
+func _on_mini_game_wrong() -> void:
+	print(\"lose\")
+	score = 0
+	$Label.text = str(score)
 "
 
 [node name="GameManger" type="Node2D"]
 script = SubResource("GDScript_s16xd")
 
 [node name="MiniGame" parent="." instance=ExtResource("1_fnvm8")]
+
+[node name="Label" type="Label" parent="."]
+offset_left = 92.0
+offset_top = 52.0
+offset_right = 132.0
+offset_bottom = 75.0
+scale = Vector2(2.382225, 2.382225)
+text = "0"
+
+[connection signal="correct" from="MiniGame" to="." method="_on_mini_game_correct"]
+[connection signal="wrong" from="MiniGame" to="." method="_on_mini_game_wrong"]

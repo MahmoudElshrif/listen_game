@@ -15,7 +15,7 @@ void vertex() {
 }
 
 void fragment() {
-	if(UV.x > progress){
+	if(UV.x + UV.y / 45. > progress){
 		COLOR.a = 0.;
 	}
 }
@@ -28,7 +28,7 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kurt1"]
 shader = SubResource("Shader_mxtnu")
-shader_parameter/progress = 1.505
+shader_parameter/progress = 0.975
 
 [node name="Timer" type="Node2D"]
 script = ExtResource("1_qdhxh")
@@ -75,7 +75,8 @@ texture = ExtResource("3_mxtnu")
 region_rect = Rect2(0, 0, 939, 64)
 
 [node name="Clock" type="Sprite2D" parent="."]
-position = Vector2(-274, -42)
-scale = Vector2(0.29074928, 0.29074928)
+position = Vector2(-258, -34.999996)
+rotation = 0.5235988
+scale = Vector2(0.19523342, 0.1952334)
 texture = ExtResource("4_mxtnu")
 offset = Vector2(-0.00012207031, 79.87027)

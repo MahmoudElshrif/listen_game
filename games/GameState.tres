@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="GameState" load_steps=14 format=3 uid="uid://dvgk1f83v5mdu"]
+[gd_resource type="Resource" script_class="GameState" load_steps=16 format=3 uid="uid://dvgk1f83v5mdu"]
 
 [ext_resource type="Script" uid="uid://b5xbpg2fwtfsj" path="res://games/resources/game_info.gd" id="1_ciq5e"]
 [ext_resource type="Script" uid="uid://cxfrsv7bgceu8" path="res://games/GameState.gd" id="1_ongsc"]
@@ -13,8 +13,10 @@
 [ext_resource type="Resource" uid="uid://bc3pwcbgk2v4t" path="res://games/resources/LeftRight.tres" id="10_mbsca"]
 [ext_resource type="Resource" uid="uid://be5y1wfr4l06y" path="res://games/resources/sec_colors.tres" id="11_vukb2"]
 [ext_resource type="Resource" uid="uid://d2yal3t5fxwcx" path="res://games/resources/ColorPicker.tres" id="12_wlv4s"]
+[ext_resource type="Resource" uid="uid://cc7dma5koe0bc" path="res://games/resources/onehidden.tres" id="13_vbmy5"]
+[ext_resource type="Resource" uid="uid://bu46lldku8slj" path="res://games/resources/quit.tres" id="14_7v3ry"]
 
 [resource]
 script = ExtResource("1_ongsc")
-games = Array[ExtResource("1_ciq5e")]([ExtResource("2_6sv20"), ExtResource("3_n1mn1"), ExtResource("4_mbsca"), ExtResource("5_vukb2"), ExtResource("6_wlv4s"), ExtResource("7_gq70w"), ExtResource("8_6sv20"), ExtResource("9_n1mn1"), ExtResource("10_mbsca"), ExtResource("11_vukb2"), ExtResource("12_wlv4s")])
+games = Array[ExtResource("1_ciq5e")]([ExtResource("2_6sv20"), ExtResource("3_n1mn1"), ExtResource("4_mbsca"), ExtResource("5_vukb2"), ExtResource("6_wlv4s"), ExtResource("7_gq70w"), ExtResource("8_6sv20"), ExtResource("9_n1mn1"), ExtResource("10_mbsca"), ExtResource("11_vukb2"), ExtResource("12_wlv4s"), ExtResource("13_vbmy5"), ExtResource("14_7v3ry")])
 metadata/_custom_type_script = "uid://cxfrsv7bgceu8"

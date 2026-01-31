@@ -96,8 +96,10 @@ script = SubResource("GDScript_s16xd")
 gamestate = ExtResource("5_vhxh1")
 
 [node name="Bg" type="Sprite2D" parent="."]
-modulate = Color(0.47, 0.47, 0.47, 1)
+modulate = Color(0.59, 0.59, 0.59, 1)
 texture_repeat = 3
+position = Vector2(1, 0)
+scale = Vector2(1.0070866, 1)
 texture = ExtResource("6_colo3")
 centered = false
 region_enabled = true
@@ -131,7 +133,7 @@ volume_db = -20.0
 offset_left = 1279.0
 offset_right = 2556.0
 offset_bottom = 730.0
-color = Color(0, 0, 0, 0.09803922)
+color = Color(0, 0, 0, 0.24313726)
 
 [node name="correctrect" type="ColorRect" parent="."]
 offset_left = -5.0

@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=3 uid="uid://ce2fc0bpwbv0b"]
+
+[ext_resource type="Script" uid="uid://b5kdydwcrakng" path="res://games/files/onehidden.gd" id="1_77aj4"]
+[ext_resource type="PackedScene" uid="uid://dnrcymgd6tkc" path="res://button.tscn" id="2_jeurl"]
+
+[sub_resource type="Shader" id="Shader_jvu85"]
+code = "shader_type canvas_item;
+
+
+uniform vec2 pos;
+void vertex() {
+	// Called for every vertex the material is visible on.
+}
+
+void fragment() {
+	vec2 uv = SCREEN_UV;
+	uv -= pos;
+	uv.y *= SCREEN_PIXEL_SIZE.x / SCREEN_PIXEL_SIZE.y;
+	uv += pos;
+	if(distance(uv,pos) < 0.16){
+		COLOR.a = 0.;
+	}
+}
+
+//void light() {
+//	// Called for every pixel for every light affecting the CanvasItem.
+//	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_77aj4"]
+shader = SubResource("Shader_jvu85")
+shader_parameter/pos = Vector2(0.54, 0.24)
+
+[node name="onehidden" type="Node2D" node_paths=PackedStringArray("elements")]
+script = ExtResource("1_77aj4")
+elements = NodePath("elements")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_77aj4")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(1053, 1053)
+color = Color(0, 0, 0, 1)
+
+[node name="elements" type="Node2D" parent="."]
+
+[node name="Button" parent="elements" instance=ExtResource("2_jeurl")]
+position = Vector2(1084, 147)

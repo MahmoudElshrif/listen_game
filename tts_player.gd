@@ -13,7 +13,9 @@ var lines = {
 	"stop" : "res://assets/tts/stop.mp3",
 	"click" : "res://assets/tts/click.mp3",
 	"left" : "res://assets/tts/left.mp3",
-	"right" : "res://assets/tts/right.mp3"
+	"right" : "res://assets/tts/right.mp3",
+	"close" : "res://assets/tts/close.mp3",
+	"purple" : "res://assets/tts/purple.mp3",
 }
 
 func _ready() -> void:

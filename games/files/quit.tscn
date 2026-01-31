@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnn24wvj63h5k"]
+
+[ext_resource type="Script" uid="uid://ca51uq84bbn41" path="res://games/files/quit.gd" id="1_yg722"]
+[ext_resource type="Texture2D" uid="uid://g4hgq0whmiau" path="res://assets/sprites/quit.png" id="2_ru87i"]
+
+[node name="quit" type="Node2D" node_paths=PackedStringArray("elements")]
+script = ExtResource("1_yg722")
+elements = NodePath("elements")
+
+[node name="elements" type="Node2D" parent="."]
+
+[node name="img" type="Sprite2D" parent="."]
+position = Vector2(624, 521)
+scale = Vector2(2.866669, 2.866669)
+texture = ExtResource("2_ru87i")

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="GameInfo" load_steps=3 format=3 uid="uid://cc7dma5koe0bc"]
+
+[ext_resource type="Script" uid="uid://b5xbpg2fwtfsj" path="res://games/resources/game_info.gd" id="1_11qqv"]
+[ext_resource type="PackedScene" uid="uid://ce2fc0bpwbv0b" path="res://games/files/onehidden.tscn" id="1_qsn14"]
+
+[resource]
+script = ExtResource("1_11qqv")
+game = ExtResource("1_qsn14")
+timerscale = 1.1
+unlockat = 10
+metadata/_custom_type_script = "uid://b5xbpg2fwtfsj"

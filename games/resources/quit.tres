@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="GameInfo" load_steps=3 format=3 uid="uid://bu46lldku8slj"]
+
+[ext_resource type="PackedScene" uid="uid://cnn24wvj63h5k" path="res://games/files/quit.tscn" id="1_d1dba"]
+[ext_resource type="Script" uid="uid://b5xbpg2fwtfsj" path="res://games/resources/game_info.gd" id="1_sponr"]
+
+[resource]
+script = ExtResource("1_sponr")
+game = ExtResource("1_d1dba")
+timerscale = 1.1
+unlockat = 10
+metadata/_custom_type_script = "uid://b5xbpg2fwtfsj"

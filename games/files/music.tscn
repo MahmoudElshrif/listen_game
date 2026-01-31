@@ -13,20 +13,20 @@ elements = NodePath("elements")
 [node name="elements" type="Node2D" parent="."]
 
 [node name="piano" parent="elements" instance=ExtResource("2_eq8n1")]
-position = Vector2(393, 528)
-scale = Vector2(0.21374902, 0.21374899)
+position = Vector2(294.00003, 432.00006)
+scale = Vector2(0.2836587, 0.28365862)
 texture = ExtResource("3_j5swg")
 id = 0
 
 [node name="drums" parent="elements" instance=ExtResource("2_eq8n1")]
-position = Vector2(655.00006, 321)
-scale = Vector2(0.6416667, 0.6416667)
+position = Vector2(657.00006, 429.00003)
+scale = Vector2(0.8277775, 0.8277775)
 texture = ExtResource("2_b6hhr")
 id = 1
 
 [node name="banjo" parent="elements" instance=ExtResource("2_eq8n1")]
-position = Vector2(867, 488)
-scale = Vector2(0.19086185, 0.19086185)
+position = Vector2(977, 399.00003)
+scale = Vector2(0.26000008, 0.26000008)
 texture = ExtResource("3_c3kpx")
 id = 2
 

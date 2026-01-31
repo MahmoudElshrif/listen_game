@@ -3,7 +3,7 @@ extends MiniGame
 
 var voices = ["yellow","green","blue"]
 
-var values = [0.1796,0.34374,0.65625]
+var values = [0.1996,0.34374,0.65625]
 var answer := 0
 
 func _ready() -> void:
@@ -12,6 +12,6 @@ func _ready() -> void:
 	super._ready()
 
 func _physics_process(delta: float) -> void:
-	if(abs(%ColorPicker.color.h - values[answer]) < 0.1):
+	if(abs(%ColorPicker.color.h - values[answer]) < 0.13):
 		#print("yes")
 		correct.emit()

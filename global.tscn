@@ -6,3 +6,9 @@
 [node name="Global" type="Node2D"]
 script = ExtResource("1_sf235")
 gamestate = ExtResource("2_qxp0b")
+colors = Dictionary[String, Color]({
+"blue": Color(0.35686278, 0.61382425, 1, 1),
+"green": Color(0.38454628, 1, 0, 1),
+"red": Color(0.98878354, 0.37734228, 0.37734228, 1),
+"yellow": Color(0.9955722, 0.8423956, 0.09839506, 1)
+})

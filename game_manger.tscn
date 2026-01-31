@@ -13,6 +13,7 @@ script/source = "extends Node2D
 #@export var games : Array[GameInfo]
 @export var gamestate : GameState
 
+const LOSE := preload(\"res://lose_screen.tscn\")
 var score : int
 var curgame : MiniGame
 var time :float= 3
@@ -29,11 +30,12 @@ func _on_mini_game_correct() -> void:
 
 func _on_mini_game_wrong() -> void:
 	#print(\"lose\")
+	curgame.process_mode = Node.PROCESS_MODE_DISABLED
 	$Label.text = str(score)
 	$wrong.play()
 	$Timer.paused = true
 	await $wrong.finished
-	get_tree().change_scene_to_file(\"res://lose_screen.tscn\")
+	get_tree().change_scene_to_packed(LOSE)
 
 func load_next():
 	#print(gamestate.gamesplayed)
@@ -53,7 +55,7 @@ func load_level(gameind : int):
 		curgame.queue_free()
 	curgame = game.game.instantiate()
 	add_child(curgame)
-	time = max(1.5,3 - (0.1 * int(score / 7)))
+	time = max(1.1,3 - (0.1 * int(score / 5)))
 	$Timer.start(time * game.timerscale)
 	curgame.correct.connect(_on_mini_game_correct)
 	curgame.wrong.connect(_on_mini_game_wrong)
@@ -77,10 +79,12 @@ script = SubResource("GDScript_s16xd")
 gamestate = ExtResource("5_vhxh1")
 
 [node name="Bg" type="Sprite2D" parent="."]
+modulate = Color(0.47, 0.47, 0.47, 1)
+texture_repeat = 3
 texture = ExtResource("6_colo3")
 centered = false
 region_enabled = true
-region_rect = Rect2(0, 0, 1270, 720)
+region_rect = Rect2(0, 200, 1270, 720)
 
 [node name="Label" type="Label" parent="."]
 offset_left = 92.0

@@ -1,7 +1,7 @@
 extends MiniGame
 
 
-var inds = [0,0,0,1,2,2]
+var inds = [0,0,0,0,1,2,2]
 var files : Array = [
 	"res://assets/sounds/piano.mp3",
 	"res://assets/sounds/drum.mp3",
@@ -18,6 +18,6 @@ func _pressed(id : int):
 func _ready() -> void:
 	super._ready()
 	answer = inds.pick_random()
-	var stream = AudioStreamMP3.load_from_file(files[answer])
+	var stream = load(files[answer])
 	$music.stream = stream
 	$music.play() 

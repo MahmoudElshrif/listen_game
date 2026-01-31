@@ -14,7 +14,7 @@ var lines = {
 
 func _ready() -> void:
 	for i in lines:
-		var stream = AudioStreamMP3.load_from_file(lines[i])
+		var stream = load(lines[i])
 		lines[i] = stream
 	
 func play(voice : String):

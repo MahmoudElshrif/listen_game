@@ -11,6 +11,4 @@ func add(game : GameInfo):
 
 func cyclegame(ind : int):
 	var game = gamestash.pop_at(ind)
-	print(gamestash.size())
 	gamestash.push_back(game)
-	print(gamestash.size())

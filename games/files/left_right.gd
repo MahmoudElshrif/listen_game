@@ -1,6 +1,6 @@
 extends MiniGame
 
-var dirs = ["left","right","left","right","left","right","left","right","red","blue"]
+var dirs = ["left","right","left","right","left","right","left","right","left","right","left","right","left","right","red","blue"]
 var answer := 0
 
 func _pressed(id : int):

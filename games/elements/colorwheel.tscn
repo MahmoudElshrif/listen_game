@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://w2npb3hb55ry"]
+
+[ext_resource type="PackedScene" uid="uid://dnrcymgd6tkc" path="res://button.tscn" id="1_u85fx"]
+
+[node name="elements" type="Node2D"]
+
+[node name="Button" parent="." instance=ExtResource("1_u85fx")]
+clip_children = 2
+position = Vector2(454.99997, 418.0001)
+rotation = 1.5707964
+
+[node name="Button2" parent="." instance=ExtResource("1_u85fx")]
+position = Vector2(635.0002, 238)
+rotation = 3.1415927
+
+[node name="Button3" parent="." instance=ExtResource("1_u85fx")]
+position = Vector2(815.00006, 418.0001)
+rotation = -1.5707964
+
+[node name="Button4" parent="." instance=ExtResource("1_u85fx")]
+position = Vector2(632.0001, 583.0001)

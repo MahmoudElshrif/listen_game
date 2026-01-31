@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cshfeua52fixp"]
+
+[ext_resource type="Script" uid="uid://bgjrfnip8jnub" path="res://games/files/simon_says.gd" id="1_gfomo"]
+[ext_resource type="PackedScene" uid="uid://w2npb3hb55ry" path="res://games/elements/colorwheel.tscn" id="2_sexqq"]
+
+[node name="SimonSays" type="Node2D" node_paths=PackedStringArray("elements")]
+script = ExtResource("1_gfomo")
+elements = NodePath("elements")
+
+[node name="elements" parent="." instance=ExtResource("2_sexqq")]

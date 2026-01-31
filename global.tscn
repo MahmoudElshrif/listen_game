@@ -8,7 +8,11 @@ script = ExtResource("1_sf235")
 gamestate = ExtResource("2_qxp0b")
 colors = Dictionary[String, Color]({
 "blue": Color(0.35686278, 0.61382425, 1, 1),
+"cyan": Color(0.17917776, 0.9073196, 0.8778744, 1),
 "green": Color(0.38454628, 1, 0, 1),
+"lav": Color(0.82230985, 0.2011935, 0.8733763, 1),
+"lime": Color(0.5767928, 0.9752062, 0.019420752, 1),
+"orange": Color(0.9955722, 0.6526473, 0.2097007, 1),
 "red": Color(0.98878354, 0.37734228, 0.37734228, 1),
-"yellow": Color(0.9955722, 0.8423956, 0.09839506, 1)
+"yellow": Color(1, 0.9337243, 0, 1)
 })

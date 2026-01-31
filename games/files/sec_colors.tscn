@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1gipjwunebaj"]
+
+[ext_resource type="Script" uid="uid://dp83bf8isyw7n" path="res://games/files/sec_colors.gd" id="1_m0bxb"]
+[ext_resource type="PackedScene" uid="uid://w2npb3hb55ry" path="res://games/elements/colorwheel.tscn" id="2_b5y00"]
+
+[node name="SimpleColor" type="Node2D" node_paths=PackedStringArray("elements")]
+script = ExtResource("1_m0bxb")
+elements = NodePath("elements")
+
+[node name="elements" parent="." instance=ExtResource("2_b5y00")]

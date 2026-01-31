@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="GameInfo" load_steps=3 format=3 uid="uid://be5y1wfr4l06y"]
+
+[ext_resource type="Script" uid="uid://b5xbpg2fwtfsj" path="res://games/resources/game_info.gd" id="1_3ntu8"]
+[ext_resource type="PackedScene" uid="uid://c1gipjwunebaj" path="res://games/files/sec_colors.tscn" id="1_05tfc"]
+
+[resource]
+script = ExtResource("1_3ntu8")
+game = ExtResource("1_05tfc")
+timerscale = 1.1
+metadata/_custom_type_script = "uid://b5xbpg2fwtfsj"

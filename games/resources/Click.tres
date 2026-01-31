@@ -7,4 +7,5 @@
 script = ExtResource("1_1l23w")
 game = ExtResource("1_5n02c")
 timerscale = 0.5
+unlockat = 10
 metadata/_custom_type_script = "uid://b5xbpg2fwtfsj"

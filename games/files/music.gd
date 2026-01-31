@@ -4,7 +4,7 @@ extends MiniGame
 var inds = [0,0,0,0,1,2,2]
 var files : Array = [
 	"res://assets/sounds/piano.mp3",
-	"res://assets/sounds/drum.mp3",
+	"res://assets/sounds/drums.mp3",
 	"res://assets/sounds/banjo.mp3"
 ]
 var answer : int = 0

@@ -13,5 +13,4 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if(abs(%ColorPicker.color.h - values[answer]) < 0.13):
-		#print("yes")
 		correct.emit()

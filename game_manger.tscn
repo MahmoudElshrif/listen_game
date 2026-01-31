@@ -18,7 +18,7 @@ var curgame : MiniGame
 var time :float= 3
 
 func _on_mini_game_correct() -> void:
-	print(\"correct\")
+	#print(\"correct\")
 	score += 1
 	Global.gamestate.score = score
 	$Label.text = str(score)
@@ -28,7 +28,7 @@ func _on_mini_game_correct() -> void:
 	load_next()
 
 func _on_mini_game_wrong() -> void:
-	print(\"lose\")
+	#print(\"lose\")
 	$Label.text = str(score)
 	$wrong.play()
 	$Timer.paused = true
@@ -36,22 +36,24 @@ func _on_mini_game_wrong() -> void:
 	get_tree().change_scene_to_file(\"res://lose_screen.tscn\")
 
 func load_next():
-	print(gamestate.gamesplayed)
+	#print(gamestate.gamesplayed)
 	for i in gamestate.games:
 		if(i.unlockat == gamestate.gamesplayed):
 			gamestate.add(i)
 	var rand = randi_range(0,min(2,gamestate.gamestash.size() - 1))
+	#print(rand)
+	#print(gamestate.gamestash.size())
 	load_level(rand)
 
 
 func load_level(gameind : int):
-	gamestate.cyclegame(gameind)
 	var game : GameInfo = gamestate.gamestash[gameind]
+	gamestate.cyclegame(gameind)
 	if(curgame):
 		curgame.queue_free()
 	curgame = game.game.instantiate()
 	add_child(curgame)
-	time = max(1.5,3 - (0.1 * int(score / 10)))
+	time = max(1.5,3 - (0.1 * int(score / 7)))
 	$Timer.start(time * game.timerscale)
 	curgame.correct.connect(_on_mini_game_correct)
 	curgame.wrong.connect(_on_mini_game_wrong)
@@ -64,6 +66,7 @@ func _physics_process(delta: float) -> void:
 	$TimerBar.set_timer($Timer.time_left / $Timer.wait_time)
 	$Bg.region_rect.position.x += 1
 	$Bg.region_rect.position.y += 1
+	$ColorRect.position.x = 1280 * ($Timer.time_left / $Timer.wait_time)
 
 func _on_timer_timeout() -> void:
 	curgame.timeout()
@@ -102,5 +105,11 @@ volume_db = -10.0
 [node name="wrong" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_05t8k")
 volume_db = -20.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = 1279.0
+offset_right = 2556.0
+offset_bottom = 730.0
+color = Color(0, 0, 0, 0.09803922)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

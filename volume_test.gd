@@ -16,8 +16,9 @@ func _ready() -> void:
 
 func _on_green_pressed(id: int) -> void:
 	if(not $mfaudio.playing):
-		if(wrongpressed == 10):
+		if(wrongpressed == 7):
 			$mfaudio.play()
+			$redaudio.stop()
 		else:
 			$redaudio.play()
 			$Timer.start()

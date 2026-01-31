@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgsvyuwn2vg16"]
+
+[ext_resource type="Script" uid="uid://bkt5xisud0w8c" path="res://press.gd" id="1_p3chx"]
+[ext_resource type="PackedScene" uid="uid://bhonckdcsf5gq" path="res://games/elements/dontandpress.tscn" id="2_5osdx"]
+
+[node name="Click" type="Node2D" node_paths=PackedStringArray("elements")]
+script = ExtResource("1_p3chx")
+elements = NodePath("elements")
+
+[node name="elements" parent="." instance=ExtResource("2_5osdx")]

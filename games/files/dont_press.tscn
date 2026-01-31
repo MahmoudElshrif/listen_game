@@ -1,15 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://dnacm3mb5ipk"]
 
 [ext_resource type="Script" uid="uid://bajp1l47lsgqr" path="res://games/files/dont_press.gd" id="1_qd8vv"]
-[ext_resource type="PackedScene" uid="uid://dnrcymgd6tkc" path="res://button.tscn" id="2_4uij4"]
+[ext_resource type="PackedScene" uid="uid://bhonckdcsf5gq" path="res://games/elements/dontandpress.tscn" id="2_4uij4"]
 
 [node name="DontPress" type="Node2D" node_paths=PackedStringArray("elements")]
 script = ExtResource("1_qd8vv")
 elements = NodePath("elements")
 
-[node name="elements" type="Node2D" parent="."]
-
-[node name="Button" parent="elements" instance=ExtResource("2_4uij4")]
-modulate = Color(0, 0.953125, 0.14304201, 1)
-position = Vector2(624, 487)
-scale = Vector2(0.871111, 0.87555563)
+[node name="elements" parent="." instance=ExtResource("2_4uij4")]

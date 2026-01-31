@@ -7,7 +7,9 @@ var lines = {
 	"green" : "res://assets/tts/green.mp3",
 	"blue" : "res://assets/tts/blue.mp3",
 	"stop" : "res://assets/tts/stop.mp3",
-	"click" : "res://assets/tts/click.mp3" 
+	"click" : "res://assets/tts/click.mp3",
+	"left" : "res://assets/tts/left.mp3",
+	"right" : "res://assets/tts/right.mp3"
 }
 
 func _ready() -> void:

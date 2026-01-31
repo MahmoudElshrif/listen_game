@@ -2,7 +2,7 @@ extends Sprite2D
 
 signal pressed(id : int)
 
-var id : int = -1
+@export var id : int = -1
 
 func _input(event: InputEvent) -> void:
 	var rect := get_global_transform() * get_rect()

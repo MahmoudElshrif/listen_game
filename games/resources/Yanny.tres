@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="GameInfo" load_steps=3 format=3 uid="uid://bx11sck4qh8eq"]
+
+[ext_resource type="PackedScene" uid="uid://bfmnhtcvvx2we" path="res://games/files/yanny.tscn" id="1_h4dc1"]
+[ext_resource type="Script" uid="uid://b5xbpg2fwtfsj" path="res://games/resources/game_info.gd" id="1_voefn"]
+
+[resource]
+script = ExtResource("1_voefn")
+game = ExtResource("1_h4dc1")
+metadata/_custom_type_script = "uid://b5xbpg2fwtfsj"

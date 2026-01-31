@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://bv8jc1bsewnqh"]
+
+[ext_resource type="Script" uid="uid://xshcnicy6hp5" path="res://volume_test.gd" id="1_40hv5"]
+[ext_resource type="PackedScene" uid="uid://dnrcymgd6tkc" path="res://button.tscn" id="1_vhnbd"]
+[ext_resource type="AudioStream" uid="uid://cbmbphqqbmdlj" path="res://assets/tts/red.mp3" id="2_d6idh"]
+[ext_resource type="AudioStream" uid="uid://bcr5hxyc5jhtu" path="res://assets/tts/mf.mp3" id="3_40hv5"]
+
+[node name="volume_test" type="Node2D"]
+script = ExtResource("1_40hv5")
+
+[node name="red" parent="." instance=ExtResource("1_vhnbd")]
+modulate = Color(1, 0.058155417, 0, 1)
+position = Vector2(329.99997, 491.99997)
+
+[node name="green" parent="." instance=ExtResource("1_vhnbd")]
+modulate = Color(0.005600393, 1, 0.15378273, 1)
+position = Vector2(968, 505)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 324.0
+offset_top = 152.0
+offset_right = 939.0
+offset_bottom = 289.0
+theme_override_font_sizes/font_size = 100
+text = "Adjust Audio"
+
+[node name="redaudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_d6idh")
+
+[node name="mfaudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_40hv5")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="pressed" from="red" to="." method="_on_red_pressed"]
+[connection signal="pressed" from="green" to="." method="_on_green_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

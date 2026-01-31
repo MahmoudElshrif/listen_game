@@ -1,7 +1,18 @@
-[gd_resource type="Resource" script_class="GameState" load_steps=2 format=3 uid="uid://dvgk1f83v5mdu"]
+[gd_resource type="Resource" script_class="GameState" load_steps=12 format=3 uid="uid://dvgk1f83v5mdu"]
 
+[ext_resource type="Script" uid="uid://b5xbpg2fwtfsj" path="res://games/resources/game_info.gd" id="1_ciq5e"]
 [ext_resource type="Script" uid="uid://cxfrsv7bgceu8" path="res://games/GameState.gd" id="1_ongsc"]
+[ext_resource type="Resource" uid="uid://b57uaj8o8jsud" path="res://games/resources/SimpleColor.tres" id="2_6sv20"]
+[ext_resource type="Resource" uid="uid://b3cyicqpggtj0" path="res://games/resources/TextColor.tres" id="3_n1mn1"]
+[ext_resource type="Resource" uid="uid://breynbdkf7v16" path="res://games/resources/DontPress.tres" id="4_mbsca"]
+[ext_resource type="Resource" uid="uid://chhlfcrrfeslm" path="res://games/resources/RandomColor.tres" id="5_vukb2"]
+[ext_resource type="Resource" uid="uid://d2sq50b2luhsa" path="res://games/resources/TrickyText.tres" id="6_wlv4s"]
+[ext_resource type="Resource" uid="uid://dgbvj56vb6tgy" path="res://games/resources/Click.tres" id="7_gq70w"]
+[ext_resource type="Resource" uid="uid://cinm1uriu4rka" path="res://games/resources/music.tres" id="8_6sv20"]
+[ext_resource type="Resource" uid="uid://bx11sck4qh8eq" path="res://games/resources/Yanny.tres" id="9_n1mn1"]
+[ext_resource type="Resource" uid="uid://bc3pwcbgk2v4t" path="res://games/resources/LeftRight.tres" id="10_mbsca"]
 
 [resource]
 script = ExtResource("1_ongsc")
+games = Array[ExtResource("1_ciq5e")]([ExtResource("2_6sv20"), ExtResource("3_n1mn1"), ExtResource("4_mbsca"), ExtResource("5_vukb2"), ExtResource("6_wlv4s"), ExtResource("7_gq70w"), ExtResource("8_6sv20"), ExtResource("9_n1mn1"), ExtResource("10_mbsca")])
 metadata/_custom_type_script = "uid://cxfrsv7bgceu8"

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bhonckdcsf5gq"]
+
+[ext_resource type="PackedScene" uid="uid://dnrcymgd6tkc" path="res://button.tscn" id="1_2k43h"]
+
+[node name="elements" type="Node2D"]
+
+[node name="Button" parent="." instance=ExtResource("1_2k43h")]
+modulate = Color(0, 0.953125, 0.14304201, 1)
+position = Vector2(624, 487)
+scale = Vector2(0.871111, 0.87555563)

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="GameInfo" load_steps=3 format=3 uid="uid://cinm1uriu4rka"]
+
+[ext_resource type="PackedScene" uid="uid://dy2iygfd67etm" path="res://games/files/music.tscn" id="1_0w7qf"]
+[ext_resource type="Script" uid="uid://b5xbpg2fwtfsj" path="res://games/resources/game_info.gd" id="1_aj63x"]
+
+[resource]
+script = ExtResource("1_aj63x")
+game = ExtResource("1_0w7qf")
+timerscale = 1.2
+metadata/_custom_type_script = "uid://b5xbpg2fwtfsj"

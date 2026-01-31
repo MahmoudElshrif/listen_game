@@ -15,4 +15,5 @@ func timeout():
 func _ready() -> void:
 	for i in range(elements.get_child_count()):
 		elements.get_children()[i].pressed.connect(_pressed)
-		elements.get_children()[i].id = i
+		if(elements.get_children()[i].id == -1):
+			elements.get_children()[i].id = i

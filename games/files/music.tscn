@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://dy2iygfd67etm"]
+
+[ext_resource type="Script" uid="uid://b28prctsqjyj5" path="res://games/files/music.gd" id="1_qt3vc"]
+[ext_resource type="Texture2D" uid="uid://cbuj7x4wa7t1a" path="res://assets/sprites/drums.png" id="2_b6hhr"]
+[ext_resource type="PackedScene" uid="uid://dnrcymgd6tkc" path="res://button.tscn" id="2_eq8n1"]
+[ext_resource type="Texture2D" uid="uid://c6r30jurtc0nf" path="res://assets/sprites/banjo.png" id="3_c3kpx"]
+[ext_resource type="Texture2D" uid="uid://c7y2sqgx2s6lj" path="res://assets/sprites/Piano.png" id="3_j5swg"]
+
+[node name="Music" type="Node2D" node_paths=PackedStringArray("elements")]
+script = ExtResource("1_qt3vc")
+elements = NodePath("elements")
+
+[node name="elements" type="Node2D" parent="."]
+
+[node name="piano" parent="elements" instance=ExtResource("2_eq8n1")]
+position = Vector2(393, 528)
+scale = Vector2(0.21374902, 0.21374899)
+texture = ExtResource("3_j5swg")
+id = 0
+
+[node name="drums" parent="elements" instance=ExtResource("2_eq8n1")]
+position = Vector2(655.00006, 321)
+scale = Vector2(0.6416667, 0.6416667)
+texture = ExtResource("2_b6hhr")
+id = 1
+
+[node name="banjo" parent="elements" instance=ExtResource("2_eq8n1")]
+position = Vector2(867, 488)
+scale = Vector2(0.19086185, 0.19086185)
+texture = ExtResource("3_c3kpx")
+id = 2
+
+[node name="music" type="AudioStreamPlayer" parent="."]

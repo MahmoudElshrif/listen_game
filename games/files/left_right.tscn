@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://1t4014wv3t8f"]
+
+[ext_resource type="PackedScene" uid="uid://dnrcymgd6tkc" path="res://button.tscn" id="1_4rqh2"]
+[ext_resource type="Script" uid="uid://cp15ualj8asxk" path="res://games/files/left_right.gd" id="1_d2x8y"]
+[ext_resource type="Texture2D" uid="uid://dsankxc2u63jx" path="res://assets/sprites/white.jpg" id="2_udhl7"]
+[ext_resource type="PackedScene" uid="uid://cxne2odanu1mf" path="res://text_button.tscn" id="3_udhl7"]
+
+[node name="LeftRight" type="Node2D" node_paths=PackedStringArray("elements")]
+script = ExtResource("1_d2x8y")
+elements = NodePath("elements")
+metadata/_edit_vertical_guides_ = [640.0]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = 459.0
+offset_top = 301.0
+offset_right = 746.0
+offset_bottom = 800.0
+color = Color(0, 0, 0, 1)
+
+[node name="elements" type="Node2D" parent="."]
+
+[node name="Button" parent="elements" instance=ExtResource("1_4rqh2")]
+modulate = Color(0.8530103, 0.21894129, 0.21894129, 1)
+position = Vector2(237.5, 546.1731)
+scale = Vector2(3.3466666, 2.1882052)
+texture = ExtResource("2_udhl7")
+id = 0
+
+[node name="Button2" parent="elements" instance=ExtResource("1_4rqh2")]
+modulate = Color(0.104196034, 0.51277816, 0.83264434, 1)
+position = Vector2(1039, 546)
+scale = Vector2(3.3466666, 2.1882052)
+texture = ExtResource("2_udhl7")
+id = 1
+
+[node name="left" parent="." instance=ExtResource("3_udhl7")]
+offset_left = 221.0
+offset_top = 456.0
+offset_right = 294.0
+offset_bottom = 631.0
+theme_override_font_sizes/font_size = 128
+text = "<"
+
+[node name="right" parent="." instance=ExtResource("3_udhl7")]
+offset_left = 1013.0
+offset_top = 456.0
+offset_right = 1086.0
+offset_bottom = 631.0
+theme_override_font_sizes/font_size = 128
+text = ">"

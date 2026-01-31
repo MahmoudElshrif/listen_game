@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="GameInfo" load_steps=3 format=3 uid="uid://d2yal3t5fxwcx"]
+
+[ext_resource type="Script" uid="uid://b5xbpg2fwtfsj" path="res://games/resources/game_info.gd" id="1_of0la"]
+[ext_resource type="PackedScene" uid="uid://di0kqykyaq2uy" path="res://games/files/color_picker.tscn" id="1_ueyqn"]
+
+[resource]
+script = ExtResource("1_of0la")
+game = ExtResource("1_ueyqn")
+unlockat = 5
+metadata/_custom_type_script = "uid://b5xbpg2fwtfsj"

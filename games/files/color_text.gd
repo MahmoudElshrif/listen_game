@@ -1,7 +1,7 @@
 extends MiniGame
 
 
-var ids = [0,1,2]
+var ids = [1,2,0]
 var colors = ["#FF0000","#00FF00","#0000FF"]
 var voices = ["red","green","blue"]
 var color = [Color.RED,Color.GREEN,Color.BLUE]
@@ -15,7 +15,7 @@ func _pressed(id : int):
 
 func _ready() -> void:
 	super._ready()
-	ids.shuffle()
+	#ids.shuffle()
 	for i in range(3):
 		$elements.get_children()[i].text = colors[ids[i]]
 		$elements.get_children()[i].id = ids[i]

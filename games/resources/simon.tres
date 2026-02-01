@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="GameInfo" load_steps=3 format=3 uid="uid://8q7e7s8egrsb"]
+
+[ext_resource type="Script" uid="uid://b5xbpg2fwtfsj" path="res://games/resources/game_info.gd" id="1_cgwvh"]
+[ext_resource type="PackedScene" uid="uid://cshfeua52fixp" path="res://games/files/simon_says.tscn" id="1_gkmli"]
+
+[resource]
+script = ExtResource("1_cgwvh")
+game = ExtResource("1_gkmli")
+timerscale = 2.8
+unlockat = 23
+metadata/_custom_type_script = "uid://b5xbpg2fwtfsj"

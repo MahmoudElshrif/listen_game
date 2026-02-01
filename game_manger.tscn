@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dgi7x1eshpt85"]
+[gd_scene load_steps=9 format=3 uid="uid://dgi7x1eshpt85"]
 
 [ext_resource type="PackedScene" uid="uid://cam8uvm1j1xtt" path="res://timer.tscn" id="1_fnvm8"]
-[ext_resource type="AudioStream" uid="uid://cfykiemwxmyyq" path="res://assets/sounds/loudinccorect.mp3" id="5_05t8k"]
+[ext_resource type="AudioStream" uid="uid://bq8m4fur3ngyg" path="res://assets/sounds/newlose.mp3" id="5_colo3"]
 [ext_resource type="Resource" uid="uid://dvgk1f83v5mdu" path="res://games/GameState.tres" id="5_vhxh1"]
 [ext_resource type="Texture2D" uid="uid://ll7h5qry2vyx" path="res://assets/sprites/bg.png" id="6_colo3"]
 [ext_resource type="AudioStream" uid="uid://dmcnuxhklkeyw" path="res://assets/sounds/clocksound.mp3" id="6_vhxh1"]
+[ext_resource type="AudioStream" uid="uid://fdj1nhyk288q" path="res://assets/sounds/heart beat.mp3" id="7_vhxh1"]
 [ext_resource type="AudioStream" uid="uid://dpb5luy5u1wac" path="res://assets/sounds/blip.mp3" id="9_5ufjf"]
 
 [sub_resource type="GDScript" id="GDScript_s16xd"]
@@ -26,6 +27,7 @@ func _on_mini_game_correct() -> void:
 	$Label.text = str(score)
 	$Timer.start()
 	$correct.play()
+	$heartbeat.play()
 	gamestate.gamesplayed += 1
 	flash_correct()
 	load_next()
@@ -38,8 +40,12 @@ func _on_mini_game_wrong() -> void:
 	#print(\"lose\")
 	curgame.process_mode = Node.PROCESS_MODE_DISABLED
 	$Label.text = str(score)
+	var tween = create_tween()
+	$death/ColorRect.color.a = 0.8
+	tween.tween_property($death/ColorRect,\"color:a\",0,2).set_ease(Tween.EASE_OUT)
 	$wrong.play()
 	$clock.stop()
+	$heartbeat.stop()
 	$Timer.paused = true
 	await $wrong.finished
 	get_tree().change_scene_to_packed(LOSE)
@@ -70,6 +76,7 @@ func load_level(gameind : int):
 	curgame.wrong.connect(_on_mini_game_wrong)
 
 func _ready() -> void:
+	$heartbeat.play()
 	Global.gamestate.score = score
 	$clock.play()
 	load_next()
@@ -85,6 +92,9 @@ func _physics_process(delta: float) -> void:
 	else:
 		$clock.volume_db = -20
 		$clock.pitch_scale = lerp($clock.pitch_scale,1.,0.1)
+	
+	$heartbeat.volume_db = min(-40 + score / 2,-10)
+	$heartbeat.pitch_scale = min(1 + score / 10,1.5)
 		
 
 func _on_timer_timeout() -> void:
@@ -127,8 +137,7 @@ stream = ExtResource("9_5ufjf")
 volume_db = -10.0
 
 [node name="wrong" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_05t8k")
-volume_db = -20.0
+stream = ExtResource("5_colo3")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = 1279.0
@@ -147,5 +156,20 @@ color = Color(1, 1, 1, 0)
 stream = ExtResource("6_vhxh1")
 volume_db = -20.0
 pitch_scale = 0.8
+
+[node name="death" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="death"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.74, 0.029600017, 0.029600017, 0)
+
+[node name="heartbeat" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_vhxh1")
+volume_db = -30.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

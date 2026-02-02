@@ -1,12 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://dgi7x1eshpt85"]
+[gd_scene load_steps=11 format=3 uid="uid://dgi7x1eshpt85"]
 
 [ext_resource type="PackedScene" uid="uid://cam8uvm1j1xtt" path="res://timer.tscn" id="1_fnvm8"]
 [ext_resource type="AudioStream" uid="uid://bq8m4fur3ngyg" path="res://assets/sounds/newlose.mp3" id="5_colo3"]
 [ext_resource type="Resource" uid="uid://dvgk1f83v5mdu" path="res://games/GameState.tres" id="5_vhxh1"]
 [ext_resource type="Texture2D" uid="uid://ll7h5qry2vyx" path="res://assets/sprites/bg.png" id="6_colo3"]
 [ext_resource type="AudioStream" uid="uid://dmcnuxhklkeyw" path="res://assets/sounds/clocksound.mp3" id="6_vhxh1"]
+[ext_resource type="PackedScene" uid="uid://dmk15dp0w40xg" path="res://losescreen.tscn" id="7_ecqqq"]
 [ext_resource type="AudioStream" uid="uid://fdj1nhyk288q" path="res://assets/sounds/heart beat.mp3" id="7_vhxh1"]
 [ext_resource type="AudioStream" uid="uid://dpb5luy5u1wac" path="res://assets/sounds/blip.mp3" id="9_5ufjf"]
+[ext_resource type="AudioStream" uid="uid://bps3mpyrkdxq3" path="res://assets/sounds/restart.mp3" id="9_cd0af"]
 
 [sub_resource type="GDScript" id="GDScript_s16xd"]
 script/source = "extends Node2D
@@ -15,9 +17,9 @@ script/source = "extends Node2D
 #@export var games : Array[GameInfo]
 @export var gamestate : GameState
 
-const LOSE := preload(\"res://lose_screen.tscn\")
 var score : int
 var curgame : MiniGame
+var curgameinfo : GameInfo
 var time :float= 3
 
 func _on_mini_game_correct() -> void:
@@ -43,12 +45,34 @@ func _on_mini_game_wrong() -> void:
 	var tween = create_tween()
 	$death/ColorRect.color.a = 0.8
 	tween.tween_property($death/ColorRect,\"color:a\",0,2).set_ease(Tween.EASE_OUT)
+	tween.parallel().tween_property($Camera2D,\"rotation_degrees\",-5,1).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
+	tween.parallel().tween_property($Camera2D,\"zoom\",Vector2(0.99,0.99),1).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
 	$wrong.play()
 	$clock.stop()
 	$heartbeat.stop()
 	$Timer.paused = true
 	await $wrong.finished
-	get_tree().change_scene_to_packed(LOSE)
+	$death/losescreen.enter()
+	#get_tree().change_scene_to_packed(LOSE)
+
+func restart():
+	load_level(curgameinfo)
+	curgame.process_mode = Node.PROCESS_MODE_DISABLED
+	$restart.play()
+	score = 0
+	$Label.text = str(score)
+	$death/ColorRect.color.a = 0
+	var tween = create_tween()
+	var easetype = Tween.EASE_OUT
+	var easetime = 0.4
+	tween.tween_property($Camera2D,\"rotation_degrees\",0,easetime).set_trans(Tween.TRANS_QUART).set_ease(easetype)
+	tween.parallel().tween_property($Camera2D,\"zoom\",Vector2(1,1),easetime).set_trans(Tween.TRANS_QUART).set_ease(easetype)
+	await get_tree().create_timer(0.1).timeout
+	curgame.process_mode = Node.PROCESS_MODE_ALWAYS
+	$clock.play()
+	$heartbeat.play()
+	$Timer.start()
+	$Timer.paused = false
 
 func load_next():
 	#print(gamestate.gamesplayed)
@@ -56,21 +80,22 @@ func load_next():
 		if(i.unlockat == gamestate.gamesplayed):
 			gamestate.add(i)
 	#var rand = randi_range(0,min(2,gamestate.gamestash.size() - 1))
-	var rand = randi_range(0,ceil((gamestate.gamestash.size() - 1) * 0.4))
+	var rand = randi_range(0,floor((gamestate.gamestash.size() - 1) * 0.4))
 	#print(rand)
 	#print(gamestate.gamestash.size())
 	#$fastclock.stop()
-	load_level(rand)
+	var game : GameInfo = gamestate.gamestash[rand]
+	curgameinfo = game
+	gamestate.cyclegame(rand)
+	load_level(game)
 
 
-func load_level(gameind : int):
-	var game : GameInfo = gamestate.gamestash[gameind]
-	gamestate.cyclegame(gameind)
+func load_level(game : GameInfo):
 	if(curgame):
 		curgame.queue_free()
 	curgame = game.game.instantiate()
 	add_child(curgame)
-	time = max(1.1,3 - (0.1 * int(score / 5)))
+	time = max(1.15,3 - (0.1 * int(score / 5)))
 	$Timer.start(time * game.timerscale)
 	curgame.correct.connect(_on_mini_game_correct)
 	curgame.wrong.connect(_on_mini_game_wrong)
@@ -108,12 +133,11 @@ gamestate = ExtResource("5_vhxh1")
 [node name="Bg" type="Sprite2D" parent="."]
 modulate = Color(0.59, 0.59, 0.59, 1)
 texture_repeat = 3
-position = Vector2(1, 0)
+position = Vector2(640, 360)
 scale = Vector2(1.0070866, 1)
 texture = ExtResource("6_colo3")
-centered = false
 region_enabled = true
-region_rect = Rect2(0, 200, 1270, 720)
+region_rect = Rect2(0, 200, 1600, 1000)
 
 [node name="Label" type="Label" parent="."]
 offset_left = 92.0
@@ -141,8 +165,9 @@ stream = ExtResource("5_colo3")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = 1279.0
+offset_top = -222.0
 offset_right = 2556.0
-offset_bottom = 730.0
+offset_bottom = 952.0
 color = Color(0, 0, 0, 0.24313726)
 
 [node name="correctrect" type="ColorRect" parent="."]
@@ -168,8 +193,18 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.74, 0.029600017, 0.029600017, 0)
 
+[node name="losescreen" parent="death" instance=ExtResource("7_ecqqq")]
+
 [node name="heartbeat" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_vhxh1")
-volume_db = -30.0
+volume_db = -40.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(640, 360)
+ignore_rotation = false
+
+[node name="restart" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_cd0af")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="restart" from="death/losescreen" to="." method="restart"]

@@ -7,7 +7,7 @@ var gamestash : Array[GameInfo]
 var score : int = 0
 
 func add(game : GameInfo):
-	gamestash.append(game)
+	gamestash.push_front(game)
 
 func cyclegame(ind : int):
 	var game = gamestash.pop_at(ind)

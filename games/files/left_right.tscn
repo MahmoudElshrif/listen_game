@@ -1,9 +1,33 @@
-[gd_scene load_steps=5 format=3 uid="uid://1t4014wv3t8f"]
+[gd_scene load_steps=10 format=3 uid="uid://1t4014wv3t8f"]
 
 [ext_resource type="PackedScene" uid="uid://dnrcymgd6tkc" path="res://button.tscn" id="1_4rqh2"]
 [ext_resource type="Script" uid="uid://cp15ualj8asxk" path="res://games/files/left_right.gd" id="1_d2x8y"]
 [ext_resource type="Texture2D" uid="uid://dsankxc2u63jx" path="res://assets/sprites/white.jpg" id="2_udhl7"]
 [ext_resource type="PackedScene" uid="uid://cxne2odanu1mf" path="res://text_button.tscn" id="3_udhl7"]
+[ext_resource type="Texture2D" uid="uid://n8sdw2l1q3a4" path="res://assets/sprites/arrow.png" id="4_8ryq6"]
+[ext_resource type="Texture2D" uid="uid://b6vlsy6j063mm" path="res://assets/sprites/arrow1.png" id="5_n8npk"]
+[ext_resource type="Texture2D" uid="uid://b6k1ih3451s30" path="res://assets/sprites/arrow2.png" id="6_ims4b"]
+[ext_resource type="Texture2D" uid="uid://dvwvuyxavrk7v" path="res://assets/sprites/arrow3.png" id="7_j1pl1"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yds5e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_n8npk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ims4b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_j1pl1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_8ryq6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="LeftRight" type="Node2D" node_paths=PackedStringArray("elements")]
 script = ExtResource("1_d2x8y")
@@ -34,6 +58,7 @@ texture = ExtResource("2_udhl7")
 id = 1
 
 [node name="left" parent="." instance=ExtResource("3_udhl7")]
+visible = false
 offset_left = 221.0
 offset_top = 456.0
 offset_right = 294.0
@@ -42,9 +67,28 @@ theme_override_font_sizes/font_size = 128
 text = "<"
 
 [node name="right" parent="." instance=ExtResource("3_udhl7")]
+visible = false
 offset_left = 1013.0
 offset_top = 456.0
 offset_right = 1086.0
 offset_bottom = 631.0
 theme_override_font_sizes/font_size = 128
 text = ">"
+
+[node name="leftarrow" type="AnimatedSprite2D" parent="."]
+position = Vector2(308.3227, 508.95218)
+scale = Vector2(0.25937498, 0.25937498)
+sprite_frames = SubResource("SpriteFrames_yds5e")
+autoplay = "default"
+frame_progress = 0.48224336
+speed_scale = 3.0
+offset = Vector2(-5.0995483, -22.948242)
+
+[node name="rightarrow" type="AnimatedSprite2D" parent="."]
+position = Vector2(1018, 507)
+scale = Vector2(0.259, 0.259)
+sprite_frames = SubResource("SpriteFrames_yds5e")
+autoplay = "default"
+speed_scale = 3.0
+offset = Vector2(-7.649414, -10.199219)
+flip_h = true

@@ -23,3 +23,6 @@ func _on_green_pressed(id: int) -> void:
 			$redaudio.play()
 			$Timer.start()
 			wrongpressed += 1
+
+func _physics_process(delta: float) -> void:
+	$Introbg.region_rect.position.y -= delta * 60

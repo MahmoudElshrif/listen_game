@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dmk15dp0w40xg"]
+[gd_scene load_steps=6 format=3 uid="uid://dmk15dp0w40xg"]
 
 [ext_resource type="Script" uid="uid://bw3cql0nq8nfg" path="res://losescreen.gd" id="1_g3uia"]
 [ext_resource type="PackedScene" uid="uid://dnrcymgd6tkc" path="res://button.tscn" id="2_n7u8t"]
+[ext_resource type="FontFile" uid="uid://7an4e0hm8ga6" path="res://assets/fonts/CabinSketch-Regular.ttf" id="2_xyymj"]
 [ext_resource type="PackedScene" uid="uid://cxne2odanu1mf" path="res://text_button.tscn" id="3_ak1a4"]
-[ext_resource type="AudioStream" uid="uid://2uvnfmnk842e" path="res://assets/sounds/click.mp3" id="4_u5ksb"]
+[ext_resource type="AudioStream" uid="uid://dpb5luy5u1wac" path="res://assets/sounds/blip.mp3" id="5_xyymj"]
 
 [node name="losescreen" type="Node2D"]
 script = ExtResource("1_g3uia")
@@ -36,6 +37,7 @@ offset_bottom = 318.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_xyymj")
 theme_override_font_sizes/font_size = 64
 text = "Score: 0"
 horizontal_alignment = 1
@@ -51,6 +53,7 @@ offset_left = 487.0
 offset_top = 439.0
 offset_right = 817.0
 offset_bottom = 614.0
+theme_override_fonts/font = ExtResource("2_xyymj")
 theme_override_font_sizes/font_size = 128
 text = "Retry"
 
@@ -63,11 +66,32 @@ pivot_offset = Vector2(81, 22)
 theme_override_font_sizes/font_size = 32
 text = "Easy Mode"
 
+[node name="maxscore" type="Label" parent="CanvasGroup"]
+offset_left = 491.0
+offset_top = 179.0
+offset_right = 778.0
+offset_bottom = 224.0
+theme_override_fonts/font = ExtResource("2_xyymj")
+theme_override_font_sizes/font_size = 32
+text = "Max score: 0"
+horizontal_alignment = 1
+
+[node name="easymodeenbale" type="Label" parent="CanvasGroup"]
+visible = false
+offset_left = 568.0
+offset_top = 320.0
+offset_right = 717.0
+offset_bottom = 343.0
+theme_override_fonts/font = ExtResource("2_xyymj")
+text = "Easy Mode enabled"
+
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.00999999999999999
 
 [node name="click" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_u5ksb")
+stream = ExtResource("5_xyymj")
+volume_db = -25.0
+pitch_scale = 0.5
 
 [connection signal="pressed" from="CanvasGroup/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasGroup/easymode" to="." method="_on_text_button_pressed"]

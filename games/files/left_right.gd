@@ -11,14 +11,14 @@ func _pressed(id : int):
 
 func _ready() -> void:
 	super._ready()
-	if(Global.gamestate.score > 50):
+	if(Global.gamestate.score > 50 and not Global.easymode):
 		$leftarrow.rotation_degrees = 30
 	answer = randi_range(0,dirs.size() - 1)
 	TTSPlayer.play(dirs[answer])
 
 
 func _physics_process(delta: float) -> void:
-	if(Global.gamestate.score > 50):
+	if(Global.gamestate.score > 50 and not Global.easymode):
 		$leftarrow.rotation_degrees += 20
 		$rightarrow.rotation_degrees += 20
 

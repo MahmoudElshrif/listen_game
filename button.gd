@@ -13,4 +13,4 @@ func _input(event: InputEvent) -> void:
 func flash():
 	var oldmod = modulate
 	modulate = Color.WHITE
-	var tween = create_tween().tween_property(self,"modulate",oldmod,0.1)
+	create_tween().tween_property(self,"modulate",oldmod,0.15)

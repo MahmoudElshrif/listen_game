@@ -7,6 +7,11 @@ extends Node2D
 
 var easymode := false
 
+var maxscore = 0
+var maxeasyscore = 0
+
+func save_score():
+	pass
 
 func _input(event: InputEvent) -> void:
 	if(event.is_action_pressed("fullscreen")):

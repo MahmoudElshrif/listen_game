@@ -10,12 +10,18 @@ func enter():
 	modulate.a = 0
 	score = 0
 	$CanvasGroup/score.text = "Score: " + str(score)
+	$CanvasGroup/easymodeenbale.modulate = Global.colors["blue"]
 	waseasy = Global.easymode
 	if(waseasy):
 		$CanvasGroup/score.modulate = Global.colors["blue"]
+		Global.maxeasyscore = max(Global.maxeasyscore,Global.gamestate.score)
+		$CanvasGroup/easymodeenbale.show()
+		enable_easy()
 	else:
 		$CanvasGroup/score.modulate = Color.WHITE
-	
+		$CanvasGroup/easymodeenbale.hide()
+		Global.maxscore = max(Global.maxscore,Global.gamestate.score)
+		disable_easy()
 	var tween = create_tween()
 	tween.tween_property(self,"modulate:a",1.,0.3).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC)
 	tween.tween_callback($Timer.start)
@@ -51,6 +57,8 @@ func enable_easy():
 	Global.easymode = true
 	$CanvasGroup/retry.modulate = Global.colors["blue"]
 	$CanvasGroup/easymode.modulate = Global.colors["blue"]
+	$CanvasGroup/maxscore.modulate = Global.colors["blue"]
+	$CanvasGroup/maxscore.text = "Easy Max Score: " + str(Global.maxeasyscore)
 	var tween = get_tree().create_tween()
 	tween.tween_property($CanvasGroup/easymode,"scale",Vector2(1.1,1.1),0.1)
 	tween.parallel().tween_property($CanvasGroup/easymode,"rotation_degrees",10,0.1)
@@ -60,6 +68,8 @@ func disable_easy():
 	Global.easymode = false
 	$CanvasGroup/retry.modulate = Color.WHITE
 	$CanvasGroup/easymode.modulate = Color.WHITE
+	$CanvasGroup/maxscore.modulate = Color.WHITE
+	$CanvasGroup/maxscore.text = "Max Score: " + str(Global.maxscore)
 	var tween = get_tree().create_tween()
 	tween.tween_property($CanvasGroup/easymode,"scale",Vector2(1,1),0.1)
 	tween.parallel().tween_property($CanvasGroup/easymode,"rotation_degrees",0,0.1)

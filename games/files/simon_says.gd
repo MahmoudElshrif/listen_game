@@ -25,9 +25,10 @@ func _pressed(id : int):
 func say():
 	saying = true
 	$elements.modulate = Color(0.4,0.4,0.4)
+	var waittime = 0.5 if Global.easymode else 0.35
 	for i in range(cur + 1):
 		TTSPlayer.play(voices[seq[i]])
-		await get_tree().create_timer(0.31).timeout
+		await get_tree().create_timer(waittime).timeout
 	
 	$elements.modulate = Color(1,1,1)
 	saying = false

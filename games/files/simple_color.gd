@@ -31,7 +31,3 @@ func _ready() -> void:
 	TTSPlayer.play(voices[ids[answer]])
 	for i in range(elements.get_child_count()):
 		elements.get_children()[i].modulate = Global.colors[colors[ids[i]]]
-
-func _physics_process(delta: float) -> void:
-	pass
-		

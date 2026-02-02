@@ -75,7 +75,8 @@ func restart():
 	await get_tree().create_timer(0.1).timeout
 	curgame.process_mode = Node.PROCESS_MODE_ALWAYS
 	$clock.play()
-	$heartbeat.play()
+	if(not Global.easymode):
+		$heartbeat.play()
 	$Timer.start()
 	$Timer.paused = false
 
@@ -100,7 +101,9 @@ func load_level(game : GameInfo):
 		curgame.queue_free()
 	curgame = game.game.instantiate()
 	add_child(curgame)
-	time = max(1.15,3 - (0.1 * int(score / 5)))
+	var basetime = 6 if Global.easymode else 3
+	var timedecrese = 10 if Global.easymode else 5
+	time = max(1.15,basetime - (0.1 * int(score / timedecrese)))
 	$Timer.start(time * game.timerscale)
 	curgame.correct.connect(_on_mini_game_correct)
 	curgame.wrong.connect(_on_mini_game_wrong)
@@ -123,8 +126,8 @@ func _physics_process(delta: float) -> void:
 		$clock.volume_db = -20
 		$clock.pitch_scale = lerp($clock.pitch_scale,1.,0.1)
 	
-	$heartbeat.volume_db = min(-40 + score / 2,-10)
-	$heartbeat.pitch_scale = min(1 + score / 10,1.5)
+	$heartbeat.volume_db = min(-40 + score / 2.,-10)
+	$heartbeat.pitch_scale = min(1 + score / 10.,1.5)
 		
 
 func _on_timer_timeout() -> void:
@@ -150,7 +153,7 @@ offset_left = 92.0
 offset_top = 52.0
 offset_right = 132.0
 offset_bottom = 75.0
-theme_override_colors/font_color = Color(1, 0.850079, 0.70387197, 1)
+theme_override_colors/font_color = Color(1, 0.9736015, 0.947203, 1)
 theme_override_fonts/font = ExtResource("3_gsim5")
 theme_override_font_sizes/font_size = 76
 text = "0"

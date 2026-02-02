@@ -58,10 +58,10 @@ theme_override_font_sizes/font_size = 128
 text = "Retry"
 
 [node name="easymode" parent="CanvasGroup" instance=ExtResource("3_ak1a4")]
-offset_left = 31.0
-offset_top = 105.0
-offset_right = 196.0
-offset_bottom = 150.0
+offset_left = 65.0
+offset_top = 64.0
+offset_right = 230.0
+offset_bottom = 109.0
 pivot_offset = Vector2(81, 22)
 theme_override_font_sizes/font_size = 32
 text = "Easy Mode"

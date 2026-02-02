@@ -31,7 +31,6 @@ func _on_mini_game_correct() -> void:
 	$Label.text = str(score)
 	$Timer.start()
 	$correct.play()
-	$heartbeat.play()
 	gamestate.gamesplayed += 1
 	flash_correct()
 	load_next()
@@ -101,9 +100,9 @@ func load_level(game : GameInfo):
 		curgame.queue_free()
 	curgame = game.game.instantiate()
 	add_child(curgame)
-	var basetime = 3 if Global.easymode else 3
-	var timedecrese = 5 if Global.easymode else 5
-	time = max(1.15,basetime - (0.1 * int(score / timedecrese))) * (2.5 if Global.easymode else 1)
+	var basetime = 6 if Global.easymode else 3
+	var timedecrese = 6 if Global.easymode else 5
+	time = max(1.15,basetime - (0.1 * int(score / timedecrese)))
 	$Timer.start(time * game.timerscale)
 	curgame.correct.connect(_on_mini_game_correct)
 	curgame.wrong.connect(_on_mini_game_wrong)

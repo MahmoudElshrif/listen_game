@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://7gutihvigag4"
+path="res://.godot/imported/ULTRASONIC FAITH - Grace OST.mp3-4d0b3c3d6bd2a50ebfa03242cd212a8a.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/ULTRASONIC FAITH - Grace OST.mp3"
+dest_files=["res://.godot/imported/ULTRASONIC FAITH - Grace OST.mp3-4d0b3c3d6bd2a50ebfa03242cd212a8a.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

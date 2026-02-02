@@ -1,10 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://dmk15dp0w40xg"]
+[gd_scene load_steps=5 format=3 uid="uid://dmk15dp0w40xg"]
 
 [ext_resource type="Script" uid="uid://bw3cql0nq8nfg" path="res://losescreen.gd" id="1_g3uia"]
 [ext_resource type="PackedScene" uid="uid://dnrcymgd6tkc" path="res://button.tscn" id="2_n7u8t"]
+[ext_resource type="PackedScene" uid="uid://cxne2odanu1mf" path="res://text_button.tscn" id="3_ak1a4"]
+[ext_resource type="AudioStream" uid="uid://2uvnfmnk842e" path="res://assets/sounds/click.mp3" id="4_u5ksb"]
 
 [node name="losescreen" type="Node2D"]
-modulate = Color(1, 1, 1, 0)
 script = ExtResource("1_g3uia")
 
 [node name="CanvasGroup" type="CanvasGroup" parent="."]
@@ -53,8 +54,21 @@ offset_bottom = 614.0
 theme_override_font_sizes/font_size = 128
 text = "Retry"
 
+[node name="easymode" parent="CanvasGroup" instance=ExtResource("3_ak1a4")]
+offset_left = 31.0
+offset_top = 105.0
+offset_right = 196.0
+offset_bottom = 150.0
+pivot_offset = Vector2(81, 22)
+theme_override_font_sizes/font_size = 32
+text = "Easy Mode"
+
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.00999999999999999
 
+[node name="click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_u5ksb")
+
 [connection signal="pressed" from="CanvasGroup/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasGroup/easymode" to="." method="_on_text_button_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -26,11 +26,11 @@ modulate = Color(0.005600393, 1, 0.15378273, 1)
 position = Vector2(968, 505)
 
 [node name="Label" type="Label" parent="."]
-offset_left = 324.0
-offset_top = 152.0
-offset_right = 939.0
-offset_bottom = 289.0
-theme_override_font_sizes/font_size = 100
+offset_left = 332.0
+offset_top = 183.0
+offset_right = 996.0
+offset_bottom = 337.0
+theme_override_font_sizes/font_size = 109
 text = "Adjust Audio"
 
 [node name="redaudio" type="AudioStreamPlayer" parent="."]

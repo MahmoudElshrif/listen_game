@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://dgi7x1eshpt85"]
+[gd_scene load_steps=13 format=3 uid="uid://dgi7x1eshpt85"]
 
 [ext_resource type="PackedScene" uid="uid://cam8uvm1j1xtt" path="res://timer.tscn" id="1_fnvm8"]
+[ext_resource type="FontFile" uid="uid://bhsp1pxtjrrwi" path="res://assets/fonts/CabinSketch-Bold.ttf" id="3_gsim5"]
 [ext_resource type="AudioStream" uid="uid://bq8m4fur3ngyg" path="res://assets/sounds/newlose.mp3" id="5_colo3"]
 [ext_resource type="Resource" uid="uid://dvgk1f83v5mdu" path="res://games/GameState.tres" id="5_vhxh1"]
 [ext_resource type="Texture2D" uid="uid://ll7h5qry2vyx" path="res://assets/sprites/bg.png" id="6_colo3"]
@@ -8,7 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://dmk15dp0w40xg" path="res://losescreen.tscn" id="7_ecqqq"]
 [ext_resource type="AudioStream" uid="uid://fdj1nhyk288q" path="res://assets/sounds/heart beat.mp3" id="7_vhxh1"]
 [ext_resource type="AudioStream" uid="uid://dpb5luy5u1wac" path="res://assets/sounds/blip.mp3" id="9_5ufjf"]
-[ext_resource type="AudioStream" uid="uid://bps3mpyrkdxq3" path="res://assets/sounds/restart.mp3" id="9_cd0af"]
+[ext_resource type="AudioStream" uid="uid://b8trmo3wulhfi" path="res://assets/sounds/restartfix.mp3" id="9_cd0af"]
+[ext_resource type="AudioStream" uid="uid://7gutihvigag4" path="res://assets/sounds/ULTRASONIC FAITH - Grace OST.mp3" id="10_cd0af"]
 
 [sub_resource type="GDScript" id="GDScript_s16xd"]
 script/source = "extends Node2D
@@ -40,6 +42,7 @@ func flash_correct():
 
 func _on_mini_game_wrong() -> void:
 	#print(\"lose\")
+	$music.stream_paused = true
 	curgame.process_mode = Node.PROCESS_MODE_DISABLED
 	$Label.text = str(score)
 	var tween = create_tween()
@@ -57,9 +60,11 @@ func _on_mini_game_wrong() -> void:
 
 func restart():
 	load_level(curgameinfo)
+	$music.stream_paused = false
 	curgame.process_mode = Node.PROCESS_MODE_DISABLED
 	$restart.play()
 	score = 0
+	Global.gamestate.score = score
 	$Label.text = str(score)
 	$death/ColorRect.color.a = 0
 	var tween = create_tween()
@@ -101,10 +106,10 @@ func load_level(game : GameInfo):
 	curgame.wrong.connect(_on_mini_game_wrong)
 
 func _ready() -> void:
-	$heartbeat.play()
-	Global.gamestate.score = score
-	$clock.play()
 	load_next()
+	restart()
+	#$heartbeat.play()
+	#$clock.play()
 
 func _physics_process(delta: float) -> void:
 	$TimerBar.set_timer($Timer.time_left / $Timer.wait_time)
@@ -132,6 +137,7 @@ gamestate = ExtResource("5_vhxh1")
 
 [node name="Bg" type="Sprite2D" parent="."]
 modulate = Color(0.59, 0.59, 0.59, 1)
+z_index = -10
 texture_repeat = 3
 position = Vector2(640, 360)
 scale = Vector2(1.0070866, 1)
@@ -144,8 +150,9 @@ offset_left = 92.0
 offset_top = 52.0
 offset_right = 132.0
 offset_bottom = 75.0
-theme_override_constants/outline_size = 30
-theme_override_font_sizes/font_size = 50
+theme_override_colors/font_color = Color(1, 0.850079, 0.70387197, 1)
+theme_override_fonts/font = ExtResource("3_gsim5")
+theme_override_font_sizes/font_size = 76
 text = "0"
 
 [node name="Timer" type="Timer" parent="."]
@@ -194,6 +201,7 @@ mouse_filter = 2
 color = Color(0.74, 0.029600017, 0.029600017, 0)
 
 [node name="losescreen" parent="death" instance=ExtResource("7_ecqqq")]
+modulate = Color(1, 1, 1, 0)
 
 [node name="heartbeat" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_vhxh1")
@@ -201,10 +209,15 @@ volume_db = -40.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(640, 360)
+rotation = -0.041181818
 ignore_rotation = false
 
 [node name="restart" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_cd0af")
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_cd0af")
+volume_db = -10.357
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="restart" from="death/losescreen" to="." method="restart"]

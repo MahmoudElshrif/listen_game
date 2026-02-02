@@ -85,6 +85,17 @@ offset_bottom = 343.0
 theme_override_fonts/font = ExtResource("2_xyymj")
 text = "Easy Mode enabled"
 
+[node name="scoredif" type="Label" parent="CanvasGroup"]
+visible = false
+offset_left = 718.0
+offset_top = 151.0
+offset_right = 758.0
+offset_bottom = 180.0
+rotation = 0.2530548
+theme_override_fonts/font = ExtResource("2_xyymj")
+theme_override_font_sizes/font_size = 24
+text = "+24"
+
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.00999999999999999
 

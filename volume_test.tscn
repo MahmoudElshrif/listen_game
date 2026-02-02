@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bv8jc1bsewnqh"]
+[gd_scene load_steps=7 format=3 uid="uid://bv8jc1bsewnqh"]
 
 [ext_resource type="Script" uid="uid://xshcnicy6hp5" path="res://volume_test.gd" id="1_40hv5"]
 [ext_resource type="PackedScene" uid="uid://dnrcymgd6tkc" path="res://button.tscn" id="1_vhnbd"]
 [ext_resource type="AudioStream" uid="uid://cbmbphqqbmdlj" path="res://assets/tts/red.mp3" id="2_d6idh"]
 [ext_resource type="Texture2D" uid="uid://cyhpjp7p85pbp" path="res://assets/sprites/introbg.png" id="2_dq8pj"]
 [ext_resource type="AudioStream" uid="uid://bcr5hxyc5jhtu" path="res://assets/tts/mf.mp3" id="3_40hv5"]
+[ext_resource type="FontFile" uid="uid://bhsp1pxtjrrwi" path="res://assets/fonts/CabinSketch-Bold.ttf" id="4_4ym2i"]
 
 [node name="volume_test" type="Node2D"]
 script = ExtResource("1_40hv5")
@@ -19,19 +20,32 @@ region_rect = Rect2(0, 0, 1280, 720)
 
 [node name="red" parent="." instance=ExtResource("1_vhnbd")]
 modulate = Color(1, 0.058155417, 0, 1)
-position = Vector2(329.99997, 491.99997)
+position = Vector2(329.99997, 542)
 
 [node name="green" parent="." instance=ExtResource("1_vhnbd")]
 modulate = Color(0.005600393, 1, 0.15378273, 1)
-position = Vector2(968, 505)
+position = Vector2(968, 555)
 
 [node name="Label" type="Label" parent="."]
-offset_left = 332.0
-offset_top = 183.0
-offset_right = 996.0
-offset_bottom = 337.0
+offset_left = 218.0
+offset_top = 123.0
+offset_right = 1068.0
+offset_bottom = 277.0
+theme_override_colors/font_color = Color(0.7771741, 0.7885179, 0.9684175, 1)
+theme_override_fonts/font = ExtResource("4_4ym2i")
 theme_override_font_sizes/font_size = 109
-text = "Adjust Audio"
+text = "Adjust Your Audio"
+
+[node name="Label" type="Label" parent="Label"]
+layout_mode = 0
+offset_left = 266.0
+offset_top = 129.0
+offset_right = 1116.0
+offset_bottom = 283.0
+theme_override_colors/font_color = Color(0.7771741, 0.7885179, 0.9684175, 1)
+theme_override_fonts/font = ExtResource("4_4ym2i")
+theme_override_font_sizes/font_size = 32
+text = "until you hear the lady"
 
 [node name="redaudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_d6idh")
@@ -42,6 +56,13 @@ stream = ExtResource("3_40hv5")
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0
 autostart = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1280.0
+offset_bottom = 723.0
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [connection signal="pressed" from="red" to="." method="_on_red_pressed"]
 [connection signal="pressed" from="green" to="." method="_on_green_pressed"]

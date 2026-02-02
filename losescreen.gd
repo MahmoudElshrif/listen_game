@@ -70,10 +70,12 @@ func _on_text_button_pressed(id: int) -> void:
 func enable_easy():
 	Global.easymode = true
 	if(waseasy):
-		if(score > oldmaxeasyscore):
+		if(Global.gamestate.score > oldmaxeasyscore):
 			$CanvasGroup/scoredif.show()
 		else:
 			$CanvasGroup/scoredif.hide()
+	else:
+		$CanvasGroup/scoredif.hide()
 	$CanvasGroup/retry.modulate = Global.colors["blue"]
 	$CanvasGroup/easymode.modulate = Global.colors["blue"]
 	$CanvasGroup/maxscore.modulate = Global.colors["blue"]
@@ -86,10 +88,13 @@ func enable_easy():
 func disable_easy():
 	Global.easymode = false
 	if(not waseasy):
-		if(score > oldmaxscore):
+		if(Global.gamestate.score > oldmaxscore):
 			$CanvasGroup/scoredif.show()
 		else:
 			$CanvasGroup/scoredif.hide()
+	else:
+		$CanvasGroup/scoredif.hide()
+		
 	$CanvasGroup/retry.modulate = Color.WHITE
 	$CanvasGroup/easymode.modulate = Color.WHITE
 	$CanvasGroup/maxscore.modulate = Color.WHITE

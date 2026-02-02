@@ -11,6 +11,8 @@ func _on_red_pressed(id: int) -> void:
 	get_tree().change_scene_to_file("res://game_manger.tscn")
 
 func _ready() -> void:
+	$red.modulate = Global.colors["red"]
+	$green.modulate = Global.colors["green"]
 	await get_tree().create_timer(1).timeout
 	$redaudio.play()
 

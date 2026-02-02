@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dhum7l4yxqfv6"
+path="res://.godot/imported/Listen and Watch.mp3-ce5502c4356c93d2b5fa1a216b29b7cf.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/Listen and Watch.mp3"
+dest_files=["res://.godot/imported/Listen and Watch.mp3-ce5502c4356c93d2b5fa1a216b29b7cf.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

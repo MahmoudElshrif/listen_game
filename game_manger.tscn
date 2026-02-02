@@ -10,7 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://fdj1nhyk288q" path="res://assets/sounds/heart beat.mp3" id="7_vhxh1"]
 [ext_resource type="AudioStream" uid="uid://dpb5luy5u1wac" path="res://assets/sounds/blip.mp3" id="9_5ufjf"]
 [ext_resource type="AudioStream" uid="uid://b8trmo3wulhfi" path="res://assets/sounds/restartfix.mp3" id="9_cd0af"]
-[ext_resource type="AudioStream" uid="uid://7gutihvigag4" path="res://assets/sounds/ULTRASONIC FAITH - Grace OST.mp3" id="10_cd0af"]
+[ext_resource type="AudioStream" uid="uid://dhum7l4yxqfv6" path="res://assets/sounds/Listen and Watch.mp3" id="11_gsim5"]
 
 [sub_resource type="GDScript" id="GDScript_s16xd"]
 script/source = "extends Node2D
@@ -101,9 +101,9 @@ func load_level(game : GameInfo):
 		curgame.queue_free()
 	curgame = game.game.instantiate()
 	add_child(curgame)
-	var basetime = 6 if Global.easymode else 3
-	var timedecrese = 10 if Global.easymode else 5
-	time = max(1.15,basetime - (0.1 * int(score / timedecrese)))
+	var basetime = 3 if Global.easymode else 3
+	var timedecrese = 5 if Global.easymode else 5
+	time = max(1.15,basetime - (0.1 * int(score / timedecrese))) * (2.5 if Global.easymode else 1)
 	$Timer.start(time * game.timerscale)
 	curgame.correct.connect(_on_mini_game_correct)
 	curgame.wrong.connect(_on_mini_game_wrong)
@@ -126,8 +126,9 @@ func _physics_process(delta: float) -> void:
 		$clock.volume_db = -20
 		$clock.pitch_scale = lerp($clock.pitch_scale,1.,0.1)
 	
-	$heartbeat.volume_db = min(-40 + score / 2.,-10)
+	$heartbeat.volume_db = min(-40 + score / 3,-10)
 	$heartbeat.pitch_scale = min(1 + score / 10.,1.5)
+	$music.volume_db = -15 - score / 2
 		
 
 func _on_timer_timeout() -> void:
@@ -208,7 +209,7 @@ modulate = Color(1, 1, 1, 0)
 
 [node name="heartbeat" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_vhxh1")
-volume_db = -40.0
+volume_db = -17.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(640, 360)
@@ -219,8 +220,9 @@ ignore_rotation = false
 stream = ExtResource("9_cd0af")
 
 [node name="music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("10_cd0af")
-volume_db = -10.357
+stream = ExtResource("11_gsim5")
+volume_db = -20.0
+autoplay = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="restart" from="death/losescreen" to="." method="restart"]

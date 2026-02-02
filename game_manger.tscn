@@ -222,7 +222,6 @@ stream = ExtResource("9_cd0af")
 [node name="music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_gsim5")
 volume_db = -20.0
-autoplay = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="restart" from="death/losescreen" to="." method="restart"]

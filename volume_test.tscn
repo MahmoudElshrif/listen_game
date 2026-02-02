@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bv8jc1bsewnqh"]
+[gd_scene load_steps=10 format=3 uid="uid://bv8jc1bsewnqh"]
 
 [ext_resource type="Script" uid="uid://xshcnicy6hp5" path="res://volume_test.gd" id="1_40hv5"]
 [ext_resource type="PackedScene" uid="uid://dnrcymgd6tkc" path="res://button.tscn" id="1_vhnbd"]
@@ -6,6 +6,43 @@
 [ext_resource type="Texture2D" uid="uid://cyhpjp7p85pbp" path="res://assets/sprites/introbg.png" id="2_dq8pj"]
 [ext_resource type="AudioStream" uid="uid://bcr5hxyc5jhtu" path="res://assets/tts/mf.mp3" id="3_40hv5"]
 [ext_resource type="FontFile" uid="uid://bhsp1pxtjrrwi" path="res://assets/fonts/CabinSketch-Bold.ttf" id="4_4ym2i"]
+
+[sub_resource type="Animation" id="Animation_4ym2i"]
+resource_name = "intro"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasGroup:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 3.0666666),
+"transitions": PackedFloat32Array(1, 2.8284273, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_45ede"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasGroup:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1dp7g"]
+_data = {
+&"RESET": SubResource("Animation_45ede"),
+&"intro": SubResource("Animation_4ym2i")
+}
 
 [node name="volume_test" type="Node2D"]
 script = ExtResource("1_40hv5")
@@ -57,12 +94,27 @@ stream = ExtResource("3_40hv5")
 wait_time = 3.0
 autostart = true
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="CanvasGroup" type="CanvasGroup" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasGroup"]
 offset_right = 1280.0
 offset_bottom = 723.0
 color = Color(0, 0, 0, 1)
 
+[node name="Label" type="Label" parent="CanvasGroup"]
+offset_left = 251.0
+offset_top = 435.0
+offset_right = 1025.0
+offset_bottom = 511.0
+theme_override_fonts/font = ExtResource("4_4ym2i")
+theme_override_font_sizes/font_size = 64
+text = "Headphones Recommended"
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_1dp7g")
+}
+autoplay = "intro"
 
 [connection signal="pressed" from="red" to="." method="_on_red_pressed"]
 [connection signal="pressed" from="green" to="." method="_on_green_pressed"]
